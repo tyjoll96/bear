@@ -1,0 +1,9 @@
+[submodule "something_something_game/vendor/glfw"]
+	path = something_something_game/vendor/glfw
+	url = https://github.com/glfw/glfw
+[submodule "something_something_game/vendor/bgfx"]
+	path = something_something_game/vendor/bgfx
+	url = https://github.com/bkaradzic/bgfx
+[submodule "something_something_game/vendor/bx"]
+	path = something_something_game/vendor/bx
+	url = https://github.com/bkaradzic/bx
