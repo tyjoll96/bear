@@ -7,13 +7,15 @@ project "bear"
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/obj/" .. outputdir .. "/%{prj.name}")
 
-	-- pchheader "rlpch.h"
-	-- pchsource "src/rlpch.cpp"
+	pchheader "brpch.h"
+	pchsource "src/brpch.cpp"
 
 	files
 	{
 		"src/**.h",
 		"src/**.cpp",
+		"vendor/glm/glm/**.hpp",
+		"vendor/glm/glm/**.inl",
 	}
 
 	defines
@@ -25,17 +27,26 @@ project "bear"
 	includedirs
 	{
 		"src",
+		"%{includedir.bgfx}",
+		"%{includedir.bx}",
+		"%{includedir.bimg}",
 		"%{includedir.GLFW}",
-		"%{includedir.entt}"
+		"%{includedir.glm}",
+		"%{includedir.entt}",
 	}
 
 	links
 	{
+		"bgfx",
+		"bimg",
+		"bx",
 		"GLFW",
 	}
 
 	filter "system:windows"
 		systemversion "latest"
+
+		links { "gdi32", "kernel32", "psapi" }
 
 		defines
 		{
@@ -55,3 +66,4 @@ project "bear"
 		defines "BR_DIST"
 		runtime "Release"
 		optimize "on"
+	setBxCompat()

@@ -1,106 +1,84 @@
-#include <iostream>
-#include <cstdio>
+#include "brpch.h"
 
-//#include <bx/math.h>
-//#include <bgfx/bgfx.h>
-//#include <bgfx/platform.h>
+#include <glm/gtc/matrix_transform.hpp>
+#include <bgfx/bgfx.h>
 
 #include "bear.h"
+#include "bear/renderer/rendering_system/rendering_components.h"
+#include "platform/bgfx/bgfx_utils.h"
 
-#define TINYGLTF_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-// #define TINYGLTF_NOEXCEPTION // optional. disable exception handling.
-//#include "tiny_gltf.h"
+#include "camera_follow_system.h"
+#include "player_controller_system.h"
+#include "targetting_system.h"
+#include "ability_system/ability_system.h"
 
-static std::vector<bear::PosColorVertex> cubeVertices =
-{
-	{-1.0f,  1.0f,  1.0f, 0xff000000 },
-	{ 1.0f,  1.0f,  1.0f, 0xff0000ff },
-	{-1.0f, -1.0f,  1.0f, 0xff00ff00 },
-	{ 1.0f, -1.0f,  1.0f, 0xff00ffff },
-	{-1.0f,  1.0f, -1.0f, 0xffff0000 },
-	{ 1.0f,  1.0f, -1.0f, 0xffff00ff },
-	{-1.0f, -1.0f, -1.0f, 0xffffff00 },
-	{ 1.0f, -1.0f, -1.0f, 0xffffffff },
-};
-
-static const uint16_t cubeTriList[] =
-{
-	0, 1, 2,
-	1, 3, 2,
-	4, 6, 5,
-	5, 6, 7,
-	0, 2, 4,
-	4, 2, 6,
-	1, 5, 3,
-	5, 7, 3,
-	0, 4, 1,
-	4, 5, 1,
-	2, 3, 6,
-	6, 3, 7,
-};
+using namespace ralleon;
 
 int main(void)
 {
-	/*tinygltf::Model model;
-	tinygltf::TinyGLTF loader;
-	std::string err;
-	std::string warn;
-
-	bool ret = loader.LoadBinaryFromFile(&model, &err, &warn, "assets/gltf/arrow.glb");*/
-
-	/*if (!warn.empty()) {
-		printf("Warn: %s\n", warn.c_str());
-	}
-
-	if (!err.empty()) {
-		printf("Err: %s\n", err.c_str());
-	}
-
-	if (!ret) {
-		printf("Failed to parse glTF\n");
-		return -1;
-	}*/
-
 	bear::World world = { "Bear Sandbox" };
+	AbilityCatalog::Init();
+	world.AddSystem(new PlayerControllerSystem);
+	world.AddSystem(new CameraFollowSystem);
 
-	bear::EntityHandle handle = world.CreateEntity("Test");
-	//bgfx::VertexLayout layout;
-	//layout.begin()
-	//	.add(bgfx::Attrib::Position, 3, bgfx::AttribType::Float)
-	//	.add(bgfx::Attrib::Normal, 3, bgfx::AttribType::Float)
-	//	// .add(bgfx::Attrib::TexCoord0, 2, bgfx::AttribType::Float)
-	//	.end();
+	bear::EntityHandle camera = world.CreateEntity("Main Camera");
+	{
+		const glm::vec3 at = { 0.0f, 0.0f, 0.0f };
+		const glm::vec3 eye = { 0.0f, 0.0f, -10.0f };
+		glm::mat4 view = glm::lookAt(eye, at, { 0.0f, 1.0f, 0.0f });
+		camera.AddComponent<bear::TransformComponent>(view);
 
-	//std::vector<unsigned char> vertex_buffer;
+		glm::mat4 proj = glm::perspective(glm::radians(45.0f), float(1280) / float(720), 0.1f, 100.0f);
+		camera.AddComponent<bear::PerspectiveCameraComponent>(proj);
+	}
 
-	//for (size_t i = 0; i < model.accessors[0].count; i++)
-	//{
-	//	uint32_t vertex_offset = i * layout.getStride();
-	//	uint32_t buffer_offset = i * 12; // replace hard coded size
+	{
+		bear::EntityHandle player = world.CreateEntity("Player");
 
-	//	vertex_buffer.insert(
-	//		vertex_buffer.begin() + vertex_offset + layout.getOffset(bgfx::Attrib::Position),
-	//		model.buffers[0].data.begin() + model.bufferViews[0].byteOffset + buffer_offset,
-	//		model.buffers[0].data.begin() + model.bufferViews[0].byteOffset + buffer_offset + 12
-	//	);
+		glm::mat4 mat = glm::mat4(1.0f);
+		mat = glm::translate(mat, { 0.0f, 0.5f, 0.0f });
+		mat = glm::scale(mat, { 0.4f, 1.0f, 0.4f });
+		player.AddComponent<bear::TransformComponent>(mat);
+		player.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kDiamond);
+		player.AddComponent<CameraFollowComponent>(camera);
+		player.AddComponent<PlayerControllerComponent>(12.0f, 90.0f);
+		player.AddComponent<CharacterComponent>();
+		player.AddComponent<AbilityCasterComponent>();
 
-	//	vertex_buffer.insert(
-	//		vertex_buffer.begin() + vertex_offset + layout.getOffset(bgfx::Attrib::Normal),
-	//		model.buffers[0].data.begin() + model.bufferViews[1].byteOffset + buffer_offset,
-	//		model.buffers[0].data.begin() + model.bufferViews[1].byteOffset + buffer_offset + 12
-	//	);
-	//}
+		world.AddSystem(new TargettingSystem(player));
+		world.AddSystem(new AbilityCastingSystem(player));
+	}
 
-	/*std::cout << vertex_buffer.size();
+	{
+		bear::EntityHandle npc = world.CreateEntity("Enemy");
+		glm::mat4 mat = glm::mat4(1.0f);
+		mat = glm::translate(mat, { 0.0f, 0.25f, -10.0f });
+		mat = glm::scale(mat, { 0.5f, 0.5, 0.5f });
+		npc.AddComponent<bear::TransformComponent>(mat);
+		npc.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
+		npc.AddComponent<CharacterComponent>();
+		npc.AddComponent<AbilityCasterComponent>();
+	}
 
-	handle.AddComponent<bear::MeshFilterComponent>(&vertex_buffer[0], vertex_buffer.size() * 3 * 4, layout, &model.buffers[0].data[model.bufferViews[3].byteOffset], model.bufferViews[3].byteLength);
+	{
+		bear::EntityHandle tree = world.CreateEntity("Tree");
 
-	float mtx[16];
-	bx::mtxIdentity(mtx);
-	bx::mtxRotateXY(mtx, 0.785398f, 0.785398f);
-	handle.AddComponent<bear::TransformComponent>(mtx);*/
+		glm::mat4 mat = glm::mat4(1.0f);
+		mat = glm::translate(mat, { 5.0f, 2.0f, -5.0f });
+		mat = glm::scale(mat, { 1.0f, 4.0f, 1.0f });
+		tree.AddComponent<bear::TransformComponent>(mat);
+		tree.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
+	}
+
+	{
+		bear::EntityHandle tree = world.CreateEntity("Tree");
+
+		glm::mat4 mat = glm::mat4(1.0f);
+		mat = glm::translate(mat, { -5.0f, 2.0f, -10.0f });
+		mat = glm::scale(mat, { 1.0f, 4.0f, 1.0f });
+		tree.AddComponent<bear::TransformComponent>(mat);
+		tree.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
+	}
 
 	world.Run();
 

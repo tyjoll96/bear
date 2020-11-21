@@ -1,0 +1,16 @@
+#pragma once
+
+#include "ability_state_base.h"
+
+namespace ralleon
+{
+	class AbilityStateAnimationPreApply : public AbilityStateBase
+	{
+	public:
+		AbilityStateAnimationPreApply(std::chrono::steady_clock::duration state_duration);
+
+		virtual void OnEnter(entt::registry& registry, float delta_time, entt::entity caster) override;
+	protected:
+		std::chrono::steady_clock::duration state_duration_;
+	};
+}

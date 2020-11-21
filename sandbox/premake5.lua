@@ -17,17 +17,26 @@ project "sandbox"
 	{
         "%{wks.location}/bear/src",
 		"%{wks.location}/bear/vendor",
+		"%{includedir.bgfx}",
+		"%{includedir.bx}",
+		"%{includedir.bimg}",
 		"%{includedir.GLFW}",
+		"%{includedir.glm}",
 		"%{includedir.entt}"
 	}
 
 	links
 	{
+		"bgfx",
+		"bimg",
+		"bx",
 		"bear"
 	}
 
 	filter "system:windows"
 		systemversion "latest"
+
+		links { "gdi32", "kernel32", "psapi" }
 
 	filter "configurations:Debug"
 		defines "BR_DEBUG"
@@ -43,3 +52,4 @@ project "sandbox"
 		defines "BR_DIST"
 		runtime "Release"
 		optimize "on"
+	setBxCompat()
