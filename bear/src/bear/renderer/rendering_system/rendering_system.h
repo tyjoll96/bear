@@ -16,6 +16,7 @@ namespace bear
 	private:
 		uint32_t counter_ = 0;
 
+		bgfx::UniformHandle u_baseColor;
 		bgfx::ProgramHandle program_;
 	};
 }

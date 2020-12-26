@@ -16,6 +16,7 @@ namespace bear
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
 		virtual void OnUpdate(entt::registry& registry, float delta_time) {}
+		virtual void OnFixedUpdate(entt::registry& registry, float delta_time) {}
 		virtual void OnEvent(Event& e) {}
 	protected:
 		std::string debug_name_;

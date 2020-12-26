@@ -1,55 +1,50 @@
 #include "brpch.h"
 #include "world.h"
 
-#include "bear/renderer/rendering_2d_system/rendering_2d_system.h"
-#include "bear/renderer/rendering_system/rendering_system.h"
+#include <bgfx/bgfx.h>
 
 #include "entity_handle.h"
 #include "components.h"
 
 namespace bear
 {
-	#define BIND_EVENT_FN(x) std::bind(&World::x, this, std::placeholders::_1)
-
 	static World* instance_;
 
-	World::World(const std::string& name)
+	const float timestep = 1.0f / 60.0f;
+
+	World::World()
 	{
 		instance_ = this;
-
-		window_ = std::unique_ptr<Window>(Window::Create(WindowProps(name)));
-		window_->SetEventCallback(BIND_EVENT_FN(OnEvent));
-
-		AddSystem(new bear::RenderingSystem());
-		AddSystem(new bear::Rendering2DSystem());
+		std::cout << timestep << std::endl;
 	}
 
 	World::~World()
 	{
 	}
 
-	void World::Run()
+	void World::OnUpdate(float delta_time)
 	{
-		while (running_)
-		{
-			float time = glfwGetTime();
-			float delta_time = time - last_frame_time_;
-			last_frame_time_ = time;
+		accumulator += delta_time;
 
+		while (accumulator >= timestep)
+		{
 			for (System* system : systems_)
 			{
-				system->OnUpdate(registry_, delta_time);
-			}
+				system->OnFixedUpdate(registry_, timestep);
 
-			window_->OnUpdate();
+				accumulator -= timestep;
+			}
+		}
+
+		for (System* system : systems_)
+		{
+			system->OnUpdate(registry_, delta_time);
 		}
 	}
 
 	void World::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		//dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
 		for (System* system : systems_)
 		{
@@ -79,11 +74,5 @@ namespace bear
 	World& World::Get()
 	{
 		return *instance_;
-	}
-
-	bool World::OnWindowClose(WindowCloseEvent& e)
-	{
-		running_ = false;
-		return true;
 	}
 }

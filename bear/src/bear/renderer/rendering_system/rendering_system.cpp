@@ -3,6 +3,7 @@
 
 #include <bx/math.h>
 #include <errno.h>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "bear/scene/components.h"
 #include "platform/bgfx/bgfx_utils.h"
@@ -14,9 +15,12 @@ namespace bear
 	RenderingSystem::RenderingSystem(const std::string& name)
 		: System(name)
 	{
-		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("example_shaders/dx11/vs_cubes.bin");
-		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("example_shaders/dx11/fs_cubes.bin");
+		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("assets/shaders/dx11/vs_default.bin");
+		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("assets/shaders/dx11/fs_default.bin");
+		bgfx::setDebug(BGFX_DEBUG_STATS);
 		program_ = bgfx::createProgram(vsh, fsh, true);
+
+		u_baseColor = bgfx::createUniform("u_baseColor", bgfx::UniformType::Vec4);
 	}
 
 	void RenderingSystem::OnUpdate(entt::registry& registry, float delta_time)
@@ -43,11 +47,18 @@ namespace bear
 			bgfx::setVertexBuffer(0, mesh_filter.Vbh);
 			bgfx::setIndexBuffer(mesh_filter.Ibh);
 
+			if (registry.has<MaterialComponent>(entity))
+			{
+				auto material = registry.get<MaterialComponent>(entity);
+				bgfx::setUniform(u_baseColor, glm::value_ptr(material.BaseColor));
+			}
+			else
+			{
+				bgfx::setUniform(u_baseColor, glm::value_ptr(glm::vec4{ 1.0f, 0.0f, 1.0f, 1.0f }));
+			}
+
 			bgfx::submit(0, program_);
 		}
-		
-		bgfx::frame();
-		counter_++;
 	}
 
 }

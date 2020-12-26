@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -96,7 +96,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -117,7 +117,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -134,11 +134,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\ability_system\ability_catalog.h" />
     <ClInclude Include="src\ability_system\ability.h" />
     <ClInclude Include="src\ability_system\ability_caster_component.h" />
+    <ClInclude Include="src\ability_system\ability_catalog.h" />
     <ClInclude Include="src\ability_system\ability_effects\ability_effect_base.h" />
     <ClInclude Include="src\ability_system\ability_effects\ability_effect_damage.h" />
+    <ClInclude Include="src\ability_system\ability_events.h" />
     <ClInclude Include="src\ability_system\ability_states\ability_state_animation_post_apply.h" />
     <ClInclude Include="src\ability_system\ability_states\ability_state_animation_pre_apply.h" />
     <ClInclude Include="src\ability_system\ability_states\ability_state_apply.h" />
@@ -151,8 +152,8 @@
     <ClInclude Include="src\targetting_system.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ability_system\ability_catalog.cpp" />
     <ClCompile Include="src\ability_system\ability.cpp" />
+    <ClCompile Include="src\ability_system\ability_catalog.cpp" />
     <ClCompile Include="src\ability_system\ability_effects\ability_effect_damage.cpp" />
     <ClCompile Include="src\ability_system\ability_states\ability_state_animation_post_apply.cpp" />
     <ClCompile Include="src\ability_system\ability_states\ability_state_animation_pre_apply.cpp" />
@@ -162,7 +163,7 @@
     <ClCompile Include="src\ability_system\ability_system.cpp" />
     <ClCompile Include="src\camera_follow_system.cpp" />
     <ClCompile Include="src\player_controller_system.cpp" />
-    <ClCompile Include="src\sandbox.cpp" />
+    <ClCompile Include="src\ralleon.cpp" />
     <ClCompile Include="src\targetting_system.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +178,9 @@
     </ProjectReference>
     <ProjectReference Include="..\bear\bear.vcxproj">
       <Project>{3F87947C-2BBE-950D-D4AA-7B10C0C0110F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\build\reactphysics3d.vcxproj">
+      <Project>{2ECAB41A-1A98-A820-032C-1947EF988485}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

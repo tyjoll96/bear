@@ -13,3 +13,6 @@
 [submodule "bear/vendor/glm"]
 	path = bear/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "bear/vendor/reactphysics3d"]
+	path = bear/vendor/reactphysics3d
+	url = https://github.com/DanielChappuis/reactphysics3d

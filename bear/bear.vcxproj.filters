@@ -57,7 +57,13 @@
     <ClInclude Include="src\bear.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\bear\core\application.h">
+      <Filter>src\bear\core</Filter>
+    </ClInclude>
     <ClInclude Include="src\bear\core\core.h">
+      <Filter>src\bear\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bear\core\entry_point.h">
       <Filter>src\bear\core</Filter>
     </ClInclude>
     <ClInclude Include="src\bear\core\input.h">
@@ -77,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="src\bear\events\key_event.h">
       <Filter>src\bear\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bear\renderer\buffers.h">
+      <Filter>src\bear\renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\bear\renderer\rendering_2d_system\rendering_2d_system.h">
       <Filter>src\bear\renderer\rendering_2d_system</Filter>
@@ -104,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="src\brpch.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\bgfx\bgfx_buffers.h">
+      <Filter>src\platform\bgfx</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\bgfx\bgfx_utils.h">
       <Filter>src\platform\bgfx</Filter>
@@ -1332,13 +1344,21 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\bear\physics\physics_system.h" />
+    <ClInclude Include="src\bear\physics\physics_components.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\bear\core\application.cpp">
+      <Filter>src\bear\core</Filter>
+    </ClCompile>
     <ClCompile Include="src\bear\core\input.cpp">
       <Filter>src\bear\core</Filter>
     </ClCompile>
     <ClCompile Include="src\bear\core\window.cpp">
       <Filter>src\bear\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bear\renderer\buffers.cpp">
+      <Filter>src\bear\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\bear\renderer\rendering_2d_system\rendering_2d_system.cpp">
       <Filter>src\bear\renderer\rendering_2d_system</Filter>
@@ -1355,8 +1375,12 @@
     <ClCompile Include="src\brpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\platform\bgfx\bgfx_buffers.cpp">
+      <Filter>src\platform\bgfx</Filter>
+    </ClCompile>
     <ClCompile Include="src\platform\bgfx\bgfx_utils.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
+    <ClCompile Include="src\bear\physics\physics_system.cpp" />
   </ItemGroup>
 </Project>

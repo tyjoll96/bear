@@ -141,21 +141,21 @@ namespace bear {
 		init.platformData.nwh = glfwGetWin32Window(window_);
 		init.resolution.width = 1280;
 		init.resolution.height = 720;
-		init.resolution.reset = BGFX_RESET_VSYNC;
+		init.resolution.reset = BGFX_RESET_NONE;
 		bgfx::init(init);
 
 		bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x443355FF, 1.0f, 0);
 		bgfx::setViewRect(0, 0, 0, 1280, 720);
-		const uint64_t stateTransparent = 0
-			| BGFX_STATE_WRITE_RGB
-			| BGFX_STATE_WRITE_A
-			| BGFX_STATE_DEPTH_TEST_LESS
-			| BGFX_STATE_CULL_CCW
-			| BGFX_STATE_MSAA
-			| BGFX_STATE_BLEND_ALPHA
-			;
-		//bgfx::setState(BGFX_STATE_BLEND_FUNC(BGFX_STATE_BLEND_SRC_ALPHA, BGFX_STATE_BLEND_INV_SRC_ALPHA));
-		bgfx::setState(stateTransparent);
+		//const uint64_t stateTransparent = 0
+		//	| BGFX_STATE_WRITE_RGB
+		//	| BGFX_STATE_WRITE_A
+		//	| BGFX_STATE_DEPTH_TEST_LESS
+		//	| BGFX_STATE_CULL_CCW
+		//	| BGFX_STATE_MSAA
+		//	| BGFX_STATE_BLEND_ALPHA
+		//	;
+		////bgfx::setState(BGFX_STATE_BLEND_FUNC(BGFX_STATE_BLEND_SRC_ALPHA, BGFX_STATE_BLEND_INV_SRC_ALPHA));
+		//bgfx::setState(stateTransparent);
 	}
 
 	void Window::Shutdown()
@@ -166,7 +166,7 @@ namespace bear {
 	void Window::OnUpdate()
 	{
 		glfwPollEvents();
-		//context_->SwapBuffers();
+		bgfx::frame();
 	}
 
 	void Window::SetVSync(bool enabled) {

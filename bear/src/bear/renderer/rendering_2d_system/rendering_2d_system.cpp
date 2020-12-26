@@ -34,7 +34,7 @@ namespace bear
 
 	void Rendering2DSystem::OnUpdate(entt::registry& registry, float delta_time)
 	{
-		bgfx::setViewTransform(0, &camera_view_, &camera_proj_);
+		bgfx::setViewTransform(1, &camera_view_, &camera_proj_);
 
 		auto registry_view = registry.view<SpriteComponent, TransformComponent>();
 		for (auto entity : registry_view)
@@ -46,9 +46,7 @@ namespace bear
 
 			bgfx::setTexture(0, tex_color_, sprite.Th);
 
-			bgfx::submit(0, program_);
+			bgfx::submit(1, program_);
 		}
-
-		bgfx::frame();
 	}
 }

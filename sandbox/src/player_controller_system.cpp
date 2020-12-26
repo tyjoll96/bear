@@ -3,6 +3,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "bear/physics/physics_components.h"
+
 namespace ralleon
 {
 	void PlayerControllerSystem::OnUpdate(entt::registry& registry, float delta_time)
@@ -17,11 +19,23 @@ namespace ralleon
 		for (auto entity : view)
 		{
 			auto [transform, player_controller] = registry.get<bear::TransformComponent, PlayerControllerComponent>(entity);
-			transform.Transform = glm::translate(transform.Transform, move_input * player_controller.MoveSpeed * delta_time);
-			transform.Transform = glm::rotate(
-				transform.Transform,
-				glm::radians(rotation * player_controller.RotationSpeed * delta_time),
-				{ 0.0f, 1.0f, 0.0f });
+			transform.SetPosition(
+				transform.GetPosition()
+				+ ((transform.Forward() * move_input.z) + (transform.Right() * move_input.x))
+				* player_controller.MoveSpeed * delta_time);
+
+			transform.SetRotation(
+				glm::quat(glm::vec3(0.0f, 1.0f, 0.0f) * glm::radians(rotation * player_controller.RotationSpeed * delta_time))
+				* transform.GetRotation());
+
+			/*if (registry.has<bear::RigidBodyComponent>(entity))
+			{
+				if (bear::Input::IsKeyPressed(bear::Key::Space))
+				{
+					auto rigid_body = registry.get<bear::RigidBodyComponent>(entity);
+					rigid_body.RigidBody->applyForceToCenterOfMass({ 0.0f, 5.0f, 0.0f });
+				}
+			}*/
 		}
 	}
 }

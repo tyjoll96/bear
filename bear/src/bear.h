@@ -1,5 +1,6 @@
 #pragma once
 
+#include "bear/core/application.h"
 #include "bear/core/input.h"
 #include "bear/core/key_codes.h"
 

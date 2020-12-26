@@ -33,6 +33,7 @@ project "bear"
 		"%{includedir.GLFW}",
 		"%{includedir.glm}",
 		"%{includedir.entt}",
+		"%{includedir.reactphysics3d}",
 	}
 
 	links
@@ -41,6 +42,7 @@ project "bear"
 		"bimg",
 		"bx",
 		"GLFW",
+		"reactphysics3d",
 	}
 
 	filter "system:windows"

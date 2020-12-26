@@ -22,7 +22,8 @@ project "sandbox"
 		"%{includedir.bimg}",
 		"%{includedir.GLFW}",
 		"%{includedir.glm}",
-		"%{includedir.entt}"
+		"%{includedir.entt}",
+		"%{includedir.reactphysics3d}",
 	}
 
 	links
@@ -30,7 +31,8 @@ project "sandbox"
 		"bgfx",
 		"bimg",
 		"bx",
-		"bear"
+		"bear",
+		"reactphysics3d",
 	}
 
 	filter "system:windows"
