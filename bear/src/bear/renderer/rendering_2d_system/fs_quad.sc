@@ -1,16 +1,13 @@
-$input v_color0, v_texcoord0
+$input v_texcoord0
 
-#include "../../vendor/bgfx/examples/common/common.sh"
+#include "../../../../vendor/bgfx/examples/common/common.sh"
 
-SAMPLER2D(s_texColor, 0);
+SAMPLER2D(s_imageTex, 0);
+uniform vec4 u_color;
 
 void main()
 {
-	vec4 color = toLinear(texture2D(s_texColor, v_texcoord0));
-	if (color.w < 0.5)
-	{
-		discard;
-	}
-	
-	gl_FragColor = color;
+	vec4 output = toLinear(texture2D(s_imageTex, v_texcoord0));
+	output = output * u_color;
+	gl_FragColor = output;
 }

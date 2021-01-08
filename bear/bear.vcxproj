@@ -157,6 +157,8 @@
     <ClInclude Include="src\bear\renderer\rendering_2d_system\sprite_component.h" />
     <ClInclude Include="src\bear\renderer\rendering_system\rendering_components.h" />
     <ClInclude Include="src\bear\renderer\rendering_system\rendering_system.h" />
+    <ClInclude Include="src\bear\renderer\rendering_ui_system\rendering_ui_components.h" />
+    <ClInclude Include="src\bear\renderer\rendering_ui_system\rendering_ui_system.h" />
     <ClInclude Include="src\bear\scene\components.h" />
     <ClInclude Include="src\bear\scene\entity_handle.h" />
     <ClInclude Include="src\bear\scene\system.h" />
@@ -581,6 +583,7 @@
     <ClCompile Include="src\bear\renderer\buffers.cpp" />
     <ClCompile Include="src\bear\renderer\rendering_2d_system\rendering_2d_system.cpp" />
     <ClCompile Include="src\bear\renderer\rendering_system\rendering_system.cpp" />
+    <ClCompile Include="src\bear\renderer\rendering_ui_system\rendering_ui_system.cpp" />
     <ClCompile Include="src\bear\scene\entity_handle.cpp" />
     <ClCompile Include="src\bear\scene\world.cpp" />
     <ClCompile Include="src\brpch.cpp">

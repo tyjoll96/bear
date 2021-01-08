@@ -19,8 +19,11 @@ namespace bear
 
 		glm::mat4 camera_view_;
 		glm::mat4 camera_proj_;
-		//float camera_proj_[16];
 
-		bgfx::UniformHandle tex_color_;
+		bgfx::UniformHandle u_image_tex_;
+		bgfx::UniformHandle u_color;
+
+		bgfx::VertexBufferHandle quad_vbh_;
+		bgfx::IndexBufferHandle quad_ibh_;
 	};
 }

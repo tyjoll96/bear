@@ -25,10 +25,8 @@ namespace bear
 
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
-		TransformComponent(const glm::mat4& transform)
-			: Transform(transform) {}
 
-		operator glm::mat4 () { return Transform; }
+		operator glm::mat4() { return Transform; }
 		operator const glm::mat4() const { return Transform; }
 
 		const glm::vec3 Forward() const
@@ -51,8 +49,8 @@ namespace bear
 
 		const glm::vec3 GetScale() const { return scale_; }
 		void SetScale(const glm::vec3& scale) { scale_ = scale; CalculateMatrix(); }
-	private:
-		void CalculateMatrix()
+	protected:
+		virtual void CalculateMatrix()
 		{
 			glm::mat4 new_mat = glm::mat4(1.0f);
 			new_mat = glm::translate(new_mat, position_);
@@ -64,5 +62,33 @@ namespace bear
 		glm::vec3 position_ = glm::vec3(0.0f);
 		glm::quat rotation_ = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
 		glm::vec3 scale_ = glm::vec3(1.0f);
+	};
+
+	struct RectTransformComponent : public TransformComponent
+	{
+		float Height;
+		float Width;
+
+		RectTransformComponent() { CalculateMatrix(); };
+		RectTransformComponent(const RectTransformComponent&) = default;
+
+		float GetHeight() const { return height_; }
+		void SetHeight(float height) { height_ = height; CalculateMatrix(); }
+
+		float GetWidth() const { return width_; }
+		void SetWidth(float width) { width_ = width; CalculateMatrix(); }
+	protected:
+		virtual void CalculateMatrix() override
+		{
+			glm::mat4 new_mat = glm::mat4(1.0f);
+			new_mat = glm::translate(new_mat, position_);
+			new_mat = new_mat * glm::toMat4(rotation_);
+			new_mat = glm::scale(new_mat, scale_);
+			new_mat = glm::scale(new_mat, { width_, height_, 1.0f });
+
+			Transform = new_mat;
+		}
+		float height_ = 100.0f;
+		float width_ = 100.0f;
 	};
 }

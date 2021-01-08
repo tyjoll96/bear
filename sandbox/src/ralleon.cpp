@@ -5,10 +5,6 @@
 
 #include "bear.h"
 #include "bear/core/entry_point.h"
-#include "bear/physics/physics_system.h"
-#include "bear/physics/physics_components.h"
-#include "bear/renderer/rendering_system/rendering_components.h"
-#include "bear/renderer/rendering_2d_system/sprite_component.h"
 #include "platform/bgfx/bgfx_utils.h"
 
 #include "camera_follow_system.h"
@@ -25,16 +21,65 @@ public:
 		: Application("Ralleon")
 	{
 		AbilityCatalog::Init();
-		world_->AddSystem(new bear::PhysicsSystem());
 		world_->AddSystem(new PlayerControllerSystem);
 		world_->AddSystem(new CameraFollowSystem);
 
+		bear::EntityHandle sprite_entity = world_->CreateEntity("Image");
+		{
+			auto th = bear::BgfxUtils::LoadTexture("assets/textures/offense_idle.ktx");
+			sprite_entity.AddComponent<bear::SpriteComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), th);
+			bear::TransformComponent tc;
+			tc.SetScale({ 9.0f, 9.0f, 1.0f });
+			sprite_entity.AddComponent<bear::TransformComponent>(tc);
+		}
+
+		bear::EntityHandle image = world_->CreateEntity("Image");
+		{
+			bear::RectTransformComponent rtc;
+			rtc.SetPosition({ 0.0f, -240.0f, -1.0f });
+			rtc.SetHeight(240.0f);
+			rtc.SetWidth(1280.0f);
+			image.AddComponent<bear::RectTransformComponent>(rtc);
+
+			image.AddComponent<bear::ImageComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		}
+
+		bear::EntityHandle option1 = world_->CreateEntity("Option 1");
+		{
+			bear::RectTransformComponent rtc;
+			rtc.SetPosition({ 480.0f, -240.0f, -10.0f });
+			rtc.SetHeight(48.0f);
+			rtc.SetWidth(192.0f);
+			option1.AddComponent<bear::RectTransformComponent>(rtc);
+
+			option1.AddComponent<bear::ImageComponent>(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
+		}
+
+		bear::EntityHandle option2 = world_->CreateEntity("Option 2");
+		{
+			bear::RectTransformComponent rtc;
+			rtc.SetPosition({ 460.0f, -180.0f, -10.0f });
+			rtc.SetHeight(48.0f);
+			rtc.SetWidth(192.0f);
+			option2.AddComponent<bear::RectTransformComponent>(rtc);
+
+			option2.AddComponent<bear::ImageComponent>(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+		}
+
+		bear::EntityHandle option3 = world_->CreateEntity("Option 3");
+		{
+			bear::RectTransformComponent rtc;
+			rtc.SetPosition({ 460.0f, -300.0f, -10.0f });
+			rtc.SetHeight(48.0f);
+			rtc.SetWidth(192.0f);
+			option3.AddComponent<bear::RectTransformComponent>(rtc);
+
+			option3.AddComponent<bear::ImageComponent>(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+		}
+
 		bear::EntityHandle camera = world_->CreateEntity("Main Camera");
 		{
-			const glm::vec3 at = { 0.0f, 0.0f, 0.0f };
-			const glm::vec3 eye = { 0.0f, 0.0f, -10.0f };
-			glm::mat4 view = glm::lookAt(eye, at, { 0.0f, 1.0f, 0.0f });
-			camera.AddComponent<bear::TransformComponent>(view);
+			camera.AddComponent<bear::TransformComponent>();
 
 			glm::mat4 proj = glm::perspective(glm::radians(45.0f), float(1280) / float(720), 0.1f, 100.0f);
 			camera.AddComponent<bear::PerspectiveCameraComponent>(proj);
@@ -47,6 +92,7 @@ public:
 			tc.SetPosition({ 0.0f, -0.5f, 0.0f });
 			tc.SetScale({ 10.0f, 0.5f, 10.0f });
 			terrain.AddComponent<bear::TransformComponent>(tc);
+
 			terrain.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
 			terrain.AddComponent<bear::MaterialComponent>(glm::vec4{ 0.5f, 0.6f, 0.2f, 1.0f });
 			terrain.AddComponent<bear::RigidBodyConstructorComponent>(rp3d::BodyType::STATIC);
@@ -60,6 +106,7 @@ public:
 			tc.SetPosition({ 0.0f, 1.5f, 0.0f });
 			tc.SetScale({ 0.4f, 1.0f, 0.4f });
 			player.AddComponent<bear::TransformComponent>(tc);
+
 			player.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kDiamond);
 			player.AddComponent<bear::MaterialComponent>(glm::vec4{ 0.1f, 1.0f, 0.3f, 1.0f });
 			player.AddComponent<CameraFollowComponent>(camera);
@@ -79,8 +126,8 @@ public:
 			bear::TransformComponent tc;
 			tc.SetPosition({ 0.0f, 1.0f, -8.0f });
 			tc.SetScale(glm::vec3(0.5f));
-
 			npc.AddComponent<bear::TransformComponent>(tc);
+
 			npc.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
 			npc.AddComponent<bear::MaterialComponent>(glm::vec4{ 1.0f, 0.2f, 0.2f, 1.0f });
 			npc.AddComponent<CharacterComponent>();
@@ -92,20 +139,22 @@ public:
 		{
 			bear::EntityHandle tree = world_->CreateEntity("Tree");
 
-			glm::mat4 mat = glm::mat4(1.0f);
-			mat = glm::translate(mat, { 5.0f, 2.0f, -5.0f });
-			mat = glm::scale(mat, { 1.0f, 4.0f, 1.0f });
-			tree.AddComponent<bear::TransformComponent>(mat);
+			bear::TransformComponent tc;
+			tc.SetPosition({ 5.0f, 2.0f, -5.0f });
+			tc.SetScale({ 1.0f, 4.0f, 1.0f });
+			tree.AddComponent<bear::TransformComponent>(tc);
+
 			tree.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
 		}
 
 		{
 			bear::EntityHandle tree = world_->CreateEntity("Tree");
 
-			glm::mat4 mat = glm::mat4(1.0f);
-			mat = glm::translate(mat, { -5.0f, 2.0f, -10.0f });
-			mat = glm::scale(mat, { 1.0f, 4.0f, 1.0f });
-			tree.AddComponent<bear::TransformComponent>(mat);
+			bear::TransformComponent tc;
+			tc.SetPosition({ -5.0f, 2.0f, -10.0f });
+			tc.SetScale({ 1.0f, 4.0f, 1.0f });
+			tree.AddComponent<bear::TransformComponent>(tc);
+
 			tree.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
 		}
 	}

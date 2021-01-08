@@ -9,4 +9,7 @@
 #include "bear/scene/entity_handle.h"
 #include "bear/scene/components.h"
 
+#include "bear/physics/physics_components.h"
 #include "bear/renderer/rendering_2d_system/sprite_component.h"
+#include "bear/renderer/rendering_system/rendering_components.h"
+#include "bear/renderer/rendering_ui_system/rendering_ui_components.h"

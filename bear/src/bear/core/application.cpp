@@ -1,8 +1,10 @@
 #include "brpch.h"
 #include "application.h"
 
+#include "bear/physics/physics_system.h"
 #include "bear/renderer/rendering_2d_system/rendering_2d_system.h"
 #include "bear/renderer/rendering_system/rendering_system.h"
+#include "bear/renderer/rendering_ui_system/rendering_ui_system.h"
 
 namespace bear
 {
@@ -16,8 +18,10 @@ namespace bear
 		window_->SetEventCallback(BR_BIND_EVENT_FN(OnEvent));
 
 		world_ = CreateRef<World>();
-		world_->AddSystem(new RenderingSystem());
+		world_->AddSystem(new PhysicsSystem());
+		world_->AddSystem(new RenderingUISystem());
 		world_->AddSystem(new Rendering2DSystem());
+		world_->AddSystem(new RenderingSystem());
 	}
 
 	Application::~Application()
