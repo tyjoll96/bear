@@ -1,11 +1,11 @@
-[submodule "something_something_game/vendor/glfw"]
-	path = something_something_game/vendor/glfw
+[submodule "bear/vendor/GLFW"]
+	path = bear/vendor/GLFW
 	url = https://github.com/glfw/glfw
-[submodule "something_something_game/vendor/bgfx"]
-	path = something_something_game/vendor/bgfx
+[submodule "bear/vendor/bgfx"]
+	path = bear/vendor/bgfx
 	url = https://github.com/bkaradzic/bgfx
-[submodule "something_something_game/vendor/bx"]
-	path = something_something_game/vendor/bx
+[submodule "bear/vendor/bx"]
+	path = bear/vendor/bx
 	url = https://github.com/bkaradzic/bx
 [submodule "bear/vendor/bimg"]
 	path = bear/vendor/bimg
