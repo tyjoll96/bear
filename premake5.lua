@@ -32,10 +32,86 @@ function setBxCompat()
 end
 
 group "Dependencies"
-	include "bear/vendor/GLFW"
+	project "GLFW"
+		kind "StaticLib"
+		language "C"
+		location "./build"
+		basedir "bear/vendor/GLFW"
+
+		-- targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+		-- objdir ("obj/" .. outputdir .. "/%{prj.name}")
+
+		files
+		{
+			"%{wks.location}/bear/vendor/GLFW/include/GLFW/glfw3.h",
+			"%{wks.location}/bear/vendor/GLFW/include/GLFW/glfw3native.h",
+			"%{wks.location}/bear/vendor/GLFW/src/glfw_config.h",
+			"%{wks.location}/bear/vendor/GLFW/src/context.c",
+			"%{wks.location}/bear/vendor/GLFW/src/init.c",
+			"%{wks.location}/bear/vendor/GLFW/src/input.c",
+			"%{wks.location}/bear/vendor/GLFW/src/monitor.c",
+			"%{wks.location}/bear/vendor/GLFW/src/vulkan.c",
+			"%{wks.location}/bear/vendor/GLFW/src/window.c"
+		}
+		filter "system:linux"
+			pic "on"
+
+			systemversion "latest"
+			staticruntime "on"
+
+			files
+			{
+				"%{wks.location}/bear/vendor/GLFW/src/x11_init.c",
+				"%{wks.location}/bear/vendor/GLFW/src/x11_monitor.c",
+				"%{wks.location}/bear/vendor/GLFW/src/x11_window.c",
+				"%{wks.location}/bear/vendor/GLFW/src/xkb_unicode.c",
+				"%{wks.location}/bear/vendor/GLFW/src/posix_time.c",
+				"%{wks.location}/bear/vendor/GLFW/src/posix_thread.c",
+				"%{wks.location}/bear/vendor/GLFW/src/glx_context.c",
+				"%{wks.location}/bear/vendor/GLFW/src/egl_context.c",
+				"%{wks.location}/bear/vendor/GLFW/src/osmesa_context.c",
+				"%{wks.location}/bear/vendor/GLFW/src/linux_joystick.c"
+			}
+
+			defines
+			{
+				"_GLFW_X11"
+			}
+
+		filter "system:windows"
+			systemversion "latest"
+			staticruntime "on"
+
+			files
+			{
+				"%{wks.location}/bear/vendor/GLFW/src/win32_init.c",
+				"%{wks.location}/bear/vendor/GLFW/src/win32_joystick.c",
+				"%{wks.location}/bear/vendor/GLFW/src/win32_monitor.c",
+				"%{wks.location}/bear/vendor/GLFW/src/win32_time.c",
+				"%{wks.location}/bear/vendor/GLFW/src/win32_thread.c",
+				"%{wks.location}/bear/vendor/GLFW/src/win32_window.c",
+				"%{wks.location}/bear/vendor/GLFW/src/wgl_context.c",
+				"%{wks.location}/bear/vendor/GLFW/src/egl_context.c",
+				"%{wks.location}/bear/vendor/GLFW/src/osmesa_context.c"
+			}
+
+			defines 
+			{ 
+				"_GLFW_WIN32",
+				"_CRT_SECURE_NO_WARNINGS"
+			}
+
+		filter "configurations:Debug"
+			runtime "Debug"
+			symbols "on"
+
+		filter "configurations:Release"
+			runtime "Release"
+			optimize "on"
+
 	project "bgfx"
 		location "./build"
-		basedir "bear/vendor/bgfx"
+		basedir "%{wks.location}/bear/vendor/bgfx"
 		kind "StaticLib"
 		language "C++"
 		cppdialect "C++14"

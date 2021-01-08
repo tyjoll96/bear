@@ -15,10 +15,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6C90947C-58C7-950D-01B4-7B10EDC9110F}</ProjectGuid>
+    <ProjectGuid>{154B857C-0182-860D-AA6E-6C109684020F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>bgfx</RootNamespace>
+    <RootNamespace>GLFW</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -54,34 +55,30 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>bin\Debug\</OutDir>
-    <IntDir>obj\Debug\bgfx\</IntDir>
-    <TargetName>bgfx</TargetName>
+    <IntDir>obj\Debug\GLFW\</IntDir>
+    <TargetName>GLFW</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>bin\Release\</OutDir>
-    <IntDir>obj\Release\bgfx\</IntDir>
-    <TargetName>bgfx</TargetName>
+    <IntDir>obj\Release\GLFW\</IntDir>
+    <TargetName>GLFW</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <OutDir>bin\Dist\</OutDir>
-    <IntDir>obj\Dist\bgfx\</IntDir>
-    <TargetName>bgfx</TargetName>
+    <IntDir>obj\Dist\GLFW\</IntDir>
+    <TargetName>GLFW</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>__STDC_FORMAT_MACROS;BGFX_CONFIG_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\bgfx\include;..\bear\vendor\bgfx\3rdparty;..\bear\vendor\bgfx\3rdparty\dxsdk\include;..\bear\vendor\bgfx\3rdparty\khronos;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_GLFW_WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <ExceptionHandling>false</ExceptionHandling>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -92,17 +89,13 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>__STDC_FORMAT_MACROS;_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\bgfx\include;..\bear\vendor\bgfx\3rdparty;..\bear\vendor\bgfx\3rdparty\dxsdk\include;..\bear\vendor\bgfx\3rdparty\khronos;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_GLFW_WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <ExceptionHandling>false</ExceptionHandling>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -114,18 +107,36 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>__STDC_FORMAT_MACROS;_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\bgfx\include;..\bear\vendor\bgfx\3rdparty;..\bear\vendor\bgfx\3rdparty\dxsdk\include;..\bear\vendor\bgfx\3rdparty\khronos;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_GLFW_WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <ExceptionHandling>false</ExceptionHandling>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\bear\vendor\GLFW\include\GLFW\glfw3.h" />
+    <ClInclude Include="..\bear\vendor\GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="..\bear\vendor\GLFW\src\glfw_config.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\bear\vendor\GLFW\src\context.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\egl_context.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\init.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\input.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\monitor.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\osmesa_context.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\vulkan.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\wgl_context.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\win32_init.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\win32_joystick.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\win32_monitor.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\win32_thread.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\win32_time.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\win32_window.c" />
+    <ClCompile Include="..\bear\vendor\GLFW\src\window.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
