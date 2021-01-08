@@ -596,10 +596,10 @@
     <ProjectReference Include="..\build\bgfx.vcxproj">
       <Project>{6C90947C-58C7-950D-01B4-7B10EDC9110F}</Project>
     </ProjectReference>
-    <ProjectReference Include="vendor\bimg\bimg.vcxproj">
+    <ProjectReference Include="..\build\bimg.vcxproj">
       <Project>{C499947C-B0D0-950D-59BD-7B1045D3110F}</Project>
     </ProjectReference>
-    <ProjectReference Include="vendor\bx\bx.vcxproj">
+    <ProjectReference Include="..\build\bx.vcxproj">
       <Project>{5F775900-4B03-880B-B4B1-880BA05C880B}</Project>
     </ProjectReference>
     <ProjectReference Include="..\build\GLFW.vcxproj">

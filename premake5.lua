@@ -162,8 +162,78 @@ group "Dependencies"
 			}
 			
 		setBxCompat()
-	include "bear/vendor/bimg"
-	include "bear/vendor/bx"
+	project "bimg"
+		location "./build"
+		basedir "%{wks.location}/bear/vendor/bimg"
+		kind "StaticLib"
+		language "C++"
+		cppdialect "C++14"
+		staticruntime "on"
+		exceptionhandling "Off"
+		rtti "Off"
+		files
+		{
+			"%{wks.location}/bear/vendor/bimg/include/bimg/*.h",
+			"%{wks.location}/bear/vendor/bimg/src/image.cpp",
+			"%{wks.location}/bear/vendor/bimg/src/image_gnf.cpp",
+			"%{wks.location}/bear/vendor/bimg/src/*.h",
+			"%{wks.location}/bear/vendor/bimg/3rdparty/astc-codec/src/decoder/*.cc"
+		}
+		includedirs
+		{
+			includedir["bx"],
+			"%{wks.location}/bear/vendor/bimg/include",
+			"%{wks.location}/bear/vendor/bimg/3rdparty/astc-codec",
+			"%{wks.location}/bear/vendor/bimg/3rdparty/astc-codec/include",
+		}
+	
+		filter "configurations:Debug"
+			runtime "Debug"
+			symbols "on"
+	
+		filter "configurations:Release"
+			runtime "Release"
+			optimize "on"
+	
+		setBxCompat()
+	project "bx"
+		location "./build"
+		basedir "%{wks.location}/bear/vendor/bx"
+		kind "StaticLib"
+		language "C++"
+		cppdialect "C++14"
+		staticruntime "on"
+		exceptionhandling "Off"
+		rtti "Off"
+		defines "__STDC_FORMAT_MACROS"
+		files
+		{
+			"%{wks.location}/bear/vendor/bx/include/bx/*.h",
+			"%{wks.location}/bear/vendor/bx/include/bx/inline/*.inl",
+			"%{wks.location}/bear/vendor/bx/src/*.cpp"
+		}
+		excludes
+		{
+			"%{wks.location}/bear/vendor/bx/src/amalgamated.cpp",
+			"%{wks.location}/bear/vendor/bx/src/crtnone.cpp"
+		}
+		includedirs
+		{
+			"%{wks.location}/bear/vendor/bx/3rdparty",
+			"%{wks.location}/bear/vendor/bx/include"
+		}
+	
+		filter "configurations:Debug"
+			runtime "Debug"
+			symbols "on"
+	
+		filter "configurations:Release"
+			runtime "Release"
+			optimize "on"
+	
+		filter "action:vs*"
+			defines "_CRT_SECURE_NO_WARNINGS"
+		setBxCompat()
 	project "reactphysics3d"
 		location "./build"
 		basedir "bear/vendor/reactphysics3d"

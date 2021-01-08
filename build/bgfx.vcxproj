@@ -126,6 +126,77 @@
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\bear\vendor\bgfx\include\bgfx\bgfx.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\include\bgfx\c99\bgfx.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\include\bgfx\defines.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\include\bgfx\embedded_shader.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\include\bgfx\platform.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\bgfx_p.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\charset.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\config.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\debug_renderdoc.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\dxgi.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\emscripten.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_clear0.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_clear1.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_clear2.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_clear3.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_clear4.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_clear5.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_clear6.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_clear7.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\fs_debugfont.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\glcontext_eagl.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\glcontext_egl.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\glcontext_glx.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\glcontext_html5.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\glcontext_nsgl.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\glcontext_wgl.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\glimports.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\nvapi.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer_d3d.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer_d3d11.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer_d3d12.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer_d3d9.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer_gl.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer_mtl.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer_vk.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\renderer_webgpu.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\shader.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\shader_dx9bc.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\shader_dxbc.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\shader_spirv.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\topology.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\version.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\vertexlayout.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\vs_clear.bin.h" />
+    <ClInclude Include="..\bear\vendor\bgfx\src\vs_debugfont.bin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\bear\vendor\bgfx\src\bgfx.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\debug_renderdoc.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\dxgi.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\glcontext_html5.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\glcontext_wgl.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\nvapi.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_d3d11.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_d3d12.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_d3d9.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_gl.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_gnm.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_noop.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_nvn.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_vk.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\renderer_webgpu.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\shader.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\shader_dx9bc.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\shader_dxbc.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\shader_spirv.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\topology.cpp" />
+    <ClCompile Include="..\bear\vendor\bgfx\src\vertexlayout.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

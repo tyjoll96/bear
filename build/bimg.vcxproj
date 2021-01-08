@@ -15,27 +15,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D354FDC8-3FE0-6A8D-48F1-ED81B4FBC68D}</ProjectGuid>
+    <ProjectGuid>{C499947C-B0D0-950D-59BD-7B1045D3110F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>bear_basketball</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <RootNamespace>bimg</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
@@ -54,107 +53,100 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\bin\Debug-windows-x86_64\bear_basketball\</OutDir>
-    <IntDir>..\..\obj\Debug-windows-x86_64\bear_basketball\</IntDir>
-    <TargetName>bear_basketball</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <OutDir>bin\Debug\</OutDir>
+    <IntDir>obj\Debug\bimg\</IntDir>
+    <TargetName>bimg</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\bin\Release-windows-x86_64\bear_basketball\</OutDir>
-    <IntDir>..\..\obj\Release-windows-x86_64\bear_basketball\</IntDir>
-    <TargetName>bear_basketball</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <OutDir>bin\Release\</OutDir>
+    <IntDir>obj\Release\bimg\</IntDir>
+    <TargetName>bimg</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\bin\Dist-windows-x86_64\bear_basketball\</OutDir>
-    <IntDir>..\..\obj\Dist-windows-x86_64\bear_basketball\</IntDir>
-    <TargetName>bear_basketball</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <OutDir>bin\Dist\</OutDir>
+    <IntDir>obj\Dist\bimg\</IntDir>
+    <TargetName>bimg</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\bear\src;..\..\bear\vendor;..\..\bear\vendor\bgfx\include;..\..\bear\vendor\bx\include;..\..\bear\vendor\bimg\include;..\..\bear\vendor\GLFW\include;..\..\bear\vendor\glm;..\..\bear\vendor\entt\include;..\..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\bimg\3rdparty\astc-codec;..\bear\vendor\bimg\3rdparty\astc-codec\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>gdi32.lib;kernel32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BR_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\bear\src;..\..\bear\vendor;..\..\bear\vendor\bgfx\include;..\..\bear\vendor\bx\include;..\..\bear\vendor\bimg\include;..\..\bear\vendor\GLFW\include;..\..\bear\vendor\glm;..\..\bear\vendor\entt\include;..\..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\bimg\3rdparty\astc-codec;..\bear\vendor\bimg\3rdparty\astc-codec\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>gdi32.lib;kernel32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BR_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\bear\src;..\..\bear\vendor;..\..\bear\vendor\bgfx\include;..\..\bear\vendor\bx\include;..\..\bear\vendor\bimg\include;..\..\bear\vendor\GLFW\include;..\..\bear\vendor\glm;..\..\bear\vendor\entt\include;..\..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Full</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <MinimalRebuild>false</MinimalRebuild>
-      <StringPooling>true</StringPooling>
+      <PreprocessorDefinitions>_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\bimg\3rdparty\astc-codec;..\bear\vendor\bimg\3rdparty\astc-codec\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>gdi32.lib;kernel32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\basketball_components.h" />
-    <ClInclude Include="src\direction_component.h" />
-    <ClInclude Include="src\offense_system.h" />
+    <ClInclude Include="..\bear\vendor\bimg\include\bimg\bimg.h" />
+    <ClInclude Include="..\bear\vendor\bimg\include\bimg\decode.h" />
+    <ClInclude Include="..\bear\vendor\bimg\include\bimg\encode.h" />
+    <ClInclude Include="..\bear\vendor\bimg\src\bimg_p.h" />
+    <ClInclude Include="..\bear\vendor\bimg\src\config.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\bear_basketball.cpp" />
-    <ClCompile Include="src\offense_system.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\build\bgfx.vcxproj">
-      <Project>{6C90947C-58C7-950D-01B4-7B10EDC9110F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\build\bimg.vcxproj">
-      <Project>{C499947C-B0D0-950D-59BD-7B1045D3110F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\build\bx.vcxproj">
-      <Project>{5F775900-4B03-880B-B4B1-880BA05C880B}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\bear\bear.vcxproj">
-      <Project>{3F87947C-2BBE-950D-D4AA-7B10C0C0110F}</Project>
-    </ProjectReference>
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\astc_file.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\codec.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\endpoint_codec.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\footprint.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\integer_sequence_codec.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\intermediate_astc_block.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\logical_astc_block.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\partition.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\physical_astc_block.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\quantization.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\3rdparty\astc-codec\src\decoder\weight_infill.cc" />
+    <ClCompile Include="..\bear\vendor\bimg\src\image.cpp" />
+    <ClCompile Include="..\bear\vendor\bimg\src\image_gnf.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

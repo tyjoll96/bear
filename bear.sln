@@ -9,9 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW", "build\GLFW.vcxproj"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bgfx", "build\bgfx.vcxproj", "{6C90947C-58C7-950D-01B4-7B10EDC9110F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bimg", "bear\vendor\bimg\bimg.vcxproj", "{C499947C-B0D0-950D-59BD-7B1045D3110F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bimg", "build\bimg.vcxproj", "{C499947C-B0D0-950D-59BD-7B1045D3110F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bx", "bear\vendor\bx\bx.vcxproj", "{5F775900-4B03-880B-B4B1-880BA05C880B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bx", "build\bx.vcxproj", "{5F775900-4B03-880B-B4B1-880BA05C880B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reactphysics3d", "build\reactphysics3d.vcxproj", "{2ECAB41A-1A98-A820-032C-1947EF988485}"
 EndProject
