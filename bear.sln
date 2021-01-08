@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW", "bear\vendor\GLFW\GLFW.vcxproj", "{154B857C-0182-860D-AA6E-6C109684020F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bgfx", "bear\vendor\bgfx\bgfx.vcxproj", "{6C90947C-58C7-950D-01B4-7B10EDC9110F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bgfx", "build\bgfx.vcxproj", "{6C90947C-58C7-950D-01B4-7B10EDC9110F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bimg", "bear\vendor\bimg\bimg.vcxproj", "{C499947C-B0D0-950D-59BD-7B1045D3110F}"
 EndProject

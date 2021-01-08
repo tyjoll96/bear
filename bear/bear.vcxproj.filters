@@ -13,6 +13,9 @@
     <Filter Include="src\bear\events">
       <UniqueIdentifier>{FAFD7E17-6689-ECDB-6F9A-6FD0DBA448DC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\bear\physics">
+      <UniqueIdentifier>{4898E336-3491-0289-5DC3-E70D491BE294}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\bear\renderer">
       <UniqueIdentifier>{3C7331EA-A889-2F80-F100-BBA15D560008}</UniqueIdentifier>
     </Filter>
@@ -21,6 +24,9 @@
     </Filter>
     <Filter Include="src\bear\renderer\rendering_system">
       <UniqueIdentifier>{EDAAEBD5-D9E6-EE3F-42F9-06372E54975A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\bear\renderer\rendering_ui_system">
+      <UniqueIdentifier>{4A3B2E10-B6FF-2C00-7F65-5DCAEBE8C835}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\bear\scene">
       <UniqueIdentifier>{73D43430-5FA2-2836-4836-995C34A3049B}</UniqueIdentifier>
@@ -84,6 +90,12 @@
     <ClInclude Include="src\bear\events\key_event.h">
       <Filter>src\bear\events</Filter>
     </ClInclude>
+    <ClInclude Include="src\bear\physics\physics_components.h">
+      <Filter>src\bear\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bear\physics\physics_system.h">
+      <Filter>src\bear\physics</Filter>
+    </ClInclude>
     <ClInclude Include="src\bear\renderer\buffers.h">
       <Filter>src\bear\renderer</Filter>
     </ClInclude>
@@ -98,6 +110,12 @@
     </ClInclude>
     <ClInclude Include="src\bear\renderer\rendering_system\rendering_system.h">
       <Filter>src\bear\renderer\rendering_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bear\renderer\rendering_ui_system\rendering_ui_components.h">
+      <Filter>src\bear\renderer\rendering_ui_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bear\renderer\rendering_ui_system\rendering_ui_system.h">
+      <Filter>src\bear\renderer\rendering_ui_system</Filter>
     </ClInclude>
     <ClInclude Include="src\bear\scene\components.h">
       <Filter>src\bear\scene</Filter>
@@ -1344,10 +1362,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\bear\physics\physics_system.h" />
-    <ClInclude Include="src\bear\physics\physics_components.h" />
-    <ClInclude Include="src\bear\renderer\rendering_ui_system\rendering_ui_system.h" />
-    <ClInclude Include="src\bear\renderer\rendering_ui_system\rendering_ui_components.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\bear\core\application.cpp">
@@ -1359,6 +1373,9 @@
     <ClCompile Include="src\bear\core\window.cpp">
       <Filter>src\bear\core</Filter>
     </ClCompile>
+    <ClCompile Include="src\bear\physics\physics_system.cpp">
+      <Filter>src\bear\physics</Filter>
+    </ClCompile>
     <ClCompile Include="src\bear\renderer\buffers.cpp">
       <Filter>src\bear\renderer</Filter>
     </ClCompile>
@@ -1367,6 +1384,9 @@
     </ClCompile>
     <ClCompile Include="src\bear\renderer\rendering_system\rendering_system.cpp">
       <Filter>src\bear\renderer\rendering_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bear\renderer\rendering_ui_system\rendering_ui_system.cpp">
+      <Filter>src\bear\renderer\rendering_ui_system</Filter>
     </ClCompile>
     <ClCompile Include="src\bear\scene\entity_handle.cpp">
       <Filter>src\bear\scene</Filter>
@@ -1383,7 +1403,5 @@
     <ClCompile Include="src\platform\bgfx\bgfx_utils.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
-    <ClCompile Include="src\bear\physics\physics_system.cpp" />
-    <ClCompile Include="src\bear\renderer\rendering_ui_system\rendering_ui_system.cpp" />
   </ItemGroup>
 </Project>

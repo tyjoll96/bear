@@ -167,7 +167,7 @@
     <ClCompile Include="src\targetting_system.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\bear\vendor\bgfx\bgfx.vcxproj">
+    <ProjectReference Include="..\build\bgfx.vcxproj">
       <Project>{6C90947C-58C7-950D-01B4-7B10EDC9110F}</Project>
     </ProjectReference>
     <ProjectReference Include="..\bear\vendor\bimg\bimg.vcxproj">
