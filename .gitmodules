@@ -1,12 +1,3 @@
-[submodule "bear/vendor/GLFW"]
-	path = bear/vendor/GLFW
-	url = https://github.com/glfw/glfw
-[submodule "bear/vendor/bgfx"]
-	path = bear/vendor/bgfx
-	url = https://github.com/bkaradzic/bgfx
-[submodule "bear/vendor/bx"]
-	path = bear/vendor/bx
-	url = https://github.com/bkaradzic/bx
 [submodule "bear/vendor/bimg"]
 	path = bear/vendor/bimg
 	url = https://github.com/bkaradzic/bimg
@@ -16,3 +7,12 @@
 [submodule "bear/vendor/reactphysics3d"]
 	path = bear/vendor/reactphysics3d
 	url = https://github.com/DanielChappuis/reactphysics3d
+[submodule "bear/vendor/bgfx"]
+	path = bear/vendor/bgfx
+	url = https://github.com/bkaradzic/bgfx
+[submodule "bear/vendor/GLFW"]
+	path = bear/vendor/GLFW
+	url = https://github.com/glfw/glfw
+[submodule "bear/vendor/bx"]
+	path = bear/vendor/bx
+	url = https://github.com/bkaradzic/bx
