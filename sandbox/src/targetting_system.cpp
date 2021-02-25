@@ -23,7 +23,7 @@ namespace ralleon
 
 		entt::entity closest_target = entt::null;
 		float closest_target_distance = 50.0f;
-		glm::mat4 current_location = player_entity_.GetComponent<bear::TransformComponent>().Transform;
+		glm::vec3 current_location = player_entity_.GetComponent<bear::TransformComponent>().GetPosition();
 
 		// exclude targets on cooldown
 		auto view = registry.view<CharacterComponent, bear::TransformComponent>();
@@ -32,7 +32,7 @@ namespace ralleon
 			if (entity == player_entity_.GetEntity()) continue;
 
 			auto transform = registry.get<bear::TransformComponent>(entity);
-			float distance = glm::distance(current_location[3], transform.Transform[3]);
+			float distance = glm::distance(current_location, transform.GetPosition());
 
 			if (distance < closest_target_distance)
 			{

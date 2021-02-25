@@ -12,6 +12,7 @@ workspace "bear"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 includedir = {}
+includedir["json"] = "%{wks.location}/bear/vendor/json/single_include"
 includedir["GLFW"] = "%{wks.location}/bear/vendor/GLFW/include"
 includedir["glm"] = "%{wks.location}/bear/vendor/glm"
 includedir["entt"] = "%{wks.location}/bear/vendor/entt/include"

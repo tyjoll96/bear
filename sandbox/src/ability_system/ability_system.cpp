@@ -19,30 +19,62 @@ namespace ralleon
 
 	void AbilityCastingSystem::OnUpdate(entt::registry& registry, float delta_time)
 	{
-		auto view = registry.view<AbilityCasterComponent>();
-		for (auto entity : view)
 		{
-			auto ability_caster = &registry.get<AbilityCasterComponent>(entity);
-
-			while (!ability_caster->IncomingAbilities.empty())
+			auto view = registry.view<AbilityCasterComponent>();
+			for (auto entity : view)
 			{
-				auto [ability, caster] = ability_caster->IncomingAbilities.back();
+				auto ability_caster = &registry.get<AbilityCasterComponent>(entity);
 
-				for (auto ability_effect : ability->GetAbilityEffects())
+				while (!ability_caster->IncomingAbilities.empty())
 				{
-					ability_effect->AddEffect(registry, caster, entity, ability);
+					auto [ability, caster] = ability_caster->IncomingAbilities.back();
+
+					for (auto ability_effect : ability->GetAbilityEffects())
+					{
+						ability_effect->AddEffect(registry, caster, entity, ability);
+					}
+
+					ability_caster->IncomingAbilities.pop_back();
 				}
 
-				ability_caster->IncomingAbilities.pop_back();
-			}
+				if (ability_caster->State == AbilityState::kWait)
+				{
+					// Try auto attack.
+					continue;
+				}
 
-			if (ability_caster->State == AbilityState::kWait)
+				ability_caster->CurrentAbility()->GetAbilityStates()[ability_caster->State]->OnUpdate(registry, delta_time, entity);
+			}
+		}
+
+		{
+			auto now = std::chrono::high_resolution_clock::now();
+			auto view = registry.view<CastbarComponent, bear::ImageComponent>();
+			for (auto entity : view)
 			{
-				// Try auto attack.
-				continue;
-			}
+				auto castbar = &registry.get<CastbarComponent>(entity);
+				auto image = &registry.get<bear::ImageComponent>(entity);
 
-			ability_caster->CurrentAbility()->GetAbilityStates()[ability_caster->State]->OnUpdate(registry, delta_time, entity);
+				if (castbar->StartTime > now) continue;
+
+				auto elapsed_time = now - castbar->StartTime;
+
+				if (elapsed_time > castbar->Duration)
+				{
+					castbar->StartTime = std::chrono::steady_clock::time_point::max();
+					image->Fill = 0;
+					continue;
+				}
+
+				float percent = (double)elapsed_time.count() / (double)castbar->Duration.count();
+
+				if (castbar->Reverse)
+				{
+					percent = 1.0f - percent;
+				}
+
+				image->Fill = percent;
+			}
 		}
 	}
 

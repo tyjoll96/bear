@@ -3,6 +3,7 @@
 
 #include <bx/math.h>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "bear/scene/components.h"
 #include "platform/bgfx/bgfx_utils.h"
@@ -30,8 +31,8 @@ namespace bear
 
 	RenderingUISystem::RenderingUISystem(const std::string& name)
 	{
-		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("assets/shaders/dx11/vs_quad.bin");
-		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("assets/shaders/dx11/fs_quad.bin");
+		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("assets/shaders/dx11/vs_image.bin");
+		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("assets/shaders/dx11/fs_image.bin");
 		program_ = bgfx::createProgram(vsh, fsh, true);
 
 		camera_view_ = glm::mat4(1.0f);
@@ -55,6 +56,7 @@ namespace bear
 
 		u_image_tex_ = bgfx::createUniform("s_imageTex", bgfx::UniformType::Sampler);
 		u_color = bgfx::createUniform("u_color", bgfx::UniformType::Vec4);
+		u_fill = bgfx::createUniform("u_fill", bgfx::UniformType::Mat4);
 
 		bgfx::VertexLayout layout;
 		layout.begin()
@@ -73,8 +75,10 @@ namespace bear
 		{
 			const auto& image = registry_view.get<ImageComponent>(entity);
 			const auto& rect_transform = registry_view.get<RectTransformComponent>(entity);
-
-			bgfx::setTransform(&rect_transform.Transform);
+			glm::mat4 twf
+				= glm::translate(glm::mat4(1.0f), { -1.0f * (1.0f - image.Fill) / 2.0f * rect_transform.GetWidth(), 0.0f, 0.0f })
+				* rect_transform.GetTransform();
+			bgfx::setTransform(&twf);
 			bgfx::setVertexBuffer(0, quad_vbh_);
 			bgfx::setIndexBuffer(quad_ibh_);
 
@@ -84,6 +88,10 @@ namespace bear
 				bgfx::setTexture(0, u_image_tex_, default_image_texture_);
 
 			bgfx::setUniform(u_color, &image.Color);
+			glm::mat4 fill = glm::mat4(1.0f);
+			fill = glm::scale(fill, { image.Fill, 1.0f, 1.0f });
+			//fill = glm::translate(fill, { -1.0f * (1.0f - image.Fill) / 2.0f * rect_transform.GetWidth(), 0.0f, 0.0f });
+			bgfx::setUniform(u_fill, &fill);
 
 			bgfx::setState(0
 				| BGFX_STATE_DEFAULT

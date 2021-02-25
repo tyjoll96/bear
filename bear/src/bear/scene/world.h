@@ -22,7 +22,7 @@ namespace bear
 		void OnEvent(Event& e);
 
 		void AddSystem(System* system);
-
+		void PopulateFromJson(const std::string& j);
 		EntityHandle CreateEntity(const std::string& name = std::string());
 
 		static World& Get();

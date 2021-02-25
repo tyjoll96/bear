@@ -34,10 +34,9 @@ namespace bear
 		auto camera_registry_view = registry.view<PerspectiveCameraComponent>();
 		for (auto entity : camera_registry_view)
 		{
-			if (registry.has<TransformComponent>(entity))
-				view = registry.get<TransformComponent>(entity).Transform;
-
-			 proj = registry.get<PerspectiveCameraComponent>(entity).Projection;
+			const auto& p_camera = registry.get<PerspectiveCameraComponent>(entity);
+			view = p_camera.View;
+			proj = p_camera.Projection;
 		}
 
 		bgfx::setViewTransform(0, &view, &proj);
@@ -46,9 +45,29 @@ namespace bear
 		for (auto entity : registry_view)
 		{
 			auto [mesh_filter, transform] = registry_view.get<MeshFilterComponent, TransformComponent>(entity);
-			bgfx::setTransform(&transform.Transform);
-			bgfx::setVertexBuffer(0, mesh_filter.Vbh);
-			bgfx::setIndexBuffer(mesh_filter.Ibh);
+			bgfx::setTransform(&transform.GetTransform());
+			mesh_filter.Vb.get()->Bind();
+			mesh_filter.Ib.get()->Bind();
+
+			if (registry.has<MaterialComponent>(entity))
+			{
+				auto material = registry.get<MaterialComponent>(entity);
+				bgfx::setUniform(u_baseColor, glm::value_ptr(material.BaseColor));
+			}
+			else
+			{
+				bgfx::setUniform(u_baseColor, glm::value_ptr(glm::vec4{ 1.0f, 0.0f, 1.0f, 1.0f }));
+			}
+
+			bgfx::submit(0, program_);
+		}
+
+		auto mesh_registry_view = registry.view<MeshTestComponent, TransformComponent>();
+		for (auto entity : mesh_registry_view)
+		{
+			auto [mesh_test, transform] = mesh_registry_view.get<MeshTestComponent, TransformComponent>(entity);
+			bgfx::setTransform(&transform.GetTransform());
+			mesh_test.M->Bind();
 
 			if (registry.has<MaterialComponent>(entity))
 			{

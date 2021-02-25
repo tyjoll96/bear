@@ -27,6 +27,7 @@ project "bear"
 	includedirs
 	{
 		"src",
+		"%{includedir.json}",
 		"%{includedir.bgfx}",
 		"%{includedir.bx}",
 		"%{includedir.bimg}",

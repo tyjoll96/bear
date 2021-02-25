@@ -1,8 +1,7 @@
 #pragma once
 
-#include <bgfx/bgfx.h>
-
 #include "bear/renderer/buffers.h"
+#include "bear/renderer/mesh.h"
 
 namespace bear
 {
@@ -74,6 +73,7 @@ namespace bear
 	struct PerspectiveCameraComponent
 	{
 		glm::mat4 Projection;
+		glm::mat4 View = glm::mat4(1.0f);
 
 		PerspectiveCameraComponent() = default;
 		PerspectiveCameraComponent(const PerspectiveCameraComponent&) = default;
@@ -83,74 +83,76 @@ namespace bear
 		}
 	};
 
+	struct MeshTestComponent
+	{
+		Ref<Mesh> M;
+
+		MeshTestComponent() = default;
+		MeshTestComponent(const MeshTestComponent&) = default;
+		MeshTestComponent(Ref<Mesh> m)
+			: M(m)
+		{}
+	};
+
 	struct MeshFilterComponent
 	{
-		void* Vertices;
-		uint32_t VerticesSize;
-		bgfx::VertexLayout Layout;
-
-		//Ref<VertexBuffer> BVB;
-
-		const void* Indices;
-		uint32_t IndicesSize;
-
-		bgfx::DynamicVertexBufferHandle Vbh;
-		bgfx::IndexBufferHandle Ibh;
+		Ref<VertexBuffer> Vb;
+		Ref<IndexBuffer> Ib;
 
 		MeshFilterComponent() = default;
 		MeshFilterComponent(const MeshFilterComponent&) = default;
-		MeshFilterComponent(void* vertices, uint32_t vertices_size, const bgfx::VertexLayout& layout, const void* indices, uint32_t indices_size)
-			: Vertices(vertices), VerticesSize(vertices_size), Layout(layout), Indices(indices), IndicesSize(indices_size)
+		MeshFilterComponent(void* vertices, uint32_t vertices_size, const VertexLayout& layout, const void* indices, uint32_t indices_size)
 		{
-			Vbh = bgfx::createDynamicVertexBuffer(bgfx::makeRef(vertices, vertices_size), layout);
-			Ibh = bgfx::createIndexBuffer(bgfx::makeRef(indices, indices_size));
+			Vb = VertexBuffer::Create(vertices, vertices_size, layout);
+			Ib = IndexBuffer::Create(indices, indices_size);
 		}
 		MeshFilterComponent(Shapes shape)
 		{
-			/*VertexLayout vertex_layout = {
+			VertexLayout layout = {
 				{ ShaderDataAttrib::Position, 3, ShaderDataType::kFloat },
 				{ ShaderDataAttrib::Color0, 4, ShaderDataType::kUint8, true }
-			};*/
-			Layout.begin()
-				.add(bgfx::Attrib::Position, 3, bgfx::AttribType::Float)
-				.add(bgfx::Attrib::Color0, 4, bgfx::AttribType::Uint8, true)
-			.end();
+			};
+
+			void* vertices;
+			uint32_t vertices_size;
+
+			const void* indices;
+			uint32_t indices_size;
 
 			switch (shape)
 			{
 			case bear::kCylinder:
-				Vertices = &cubeVertices;
-				VerticesSize = sizeof(cubeVertices);
+				vertices = &cubeVertices;
+				vertices_size = sizeof(cubeVertices);
 
-				Indices = &cubeTriList;
-				IndicesSize = sizeof(cubeTriList);
+				indices = &cubeTriList;
+				indices_size = sizeof(cubeTriList);
 				break;
 			case bear::kDiamond:
-				Vertices = &diamondVertices;
-				VerticesSize = sizeof(diamondVertices);
+				vertices = &diamondVertices;
+				vertices_size = sizeof(diamondVertices);
 
-				Indices = &diamondTriList;
-				IndicesSize = sizeof(diamondTriList);
+				indices = &diamondTriList;
+				indices_size = sizeof(diamondTriList);
 				break;
 			case bear::kCube:
-				Vertices = &cubeVertices;
-				VerticesSize = sizeof(cubeVertices);
+				vertices = &cubeVertices;
+				vertices_size = sizeof(cubeVertices);
 
-				Indices = &cubeTriList;
-				IndicesSize = sizeof(cubeTriList);
+				indices = &cubeTriList;
+				indices_size = sizeof(cubeTriList);
 				break;
 			default:
-				Vertices = &cubeVertices;
-				VerticesSize = sizeof(cubeVertices);
+				vertices = &cubeVertices;
+				vertices_size = sizeof(cubeVertices);
 
-				Indices = &cubeTriList;
-				IndicesSize = sizeof(cubeTriList);
+				indices = &cubeTriList;
+				indices_size = sizeof(cubeTriList);
 				break;
 			}
 
-			//BVB = VertexBuffer::Create(Vertices, VerticesSize, vertex_layout);
-			Vbh = bgfx::createDynamicVertexBuffer(bgfx::makeRef(Vertices, VerticesSize), Layout);
-			Ibh = bgfx::createIndexBuffer(bgfx::makeRef(Indices, IndicesSize));
+			Vb = VertexBuffer::Create(vertices, vertices_size, layout);
+			Ib = IndexBuffer::Create(indices, indices_size);
 		}
 	};
 

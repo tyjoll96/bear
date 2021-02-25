@@ -1,0 +1,90 @@
+[
+    {
+        "name": "Tree",
+        "components":
+        [
+            {
+                "kind": "transform",
+                "values":
+                {
+                    "position":
+                    {
+                        "x": 5.0,
+                        "y": 2.0,
+                        "z": -5.0
+                    },
+                    "scale":
+                    {
+                        "x": 0.5,
+                        "y": 4.0,
+                        "z": 0.5
+                    }
+                }
+            },
+            {
+                "kind": "meshFilter",
+                "values":
+                {
+                    "shape": "cube"
+                }
+            },
+            {
+                "kind": "material",
+                "values":
+                {
+                    "color":
+                    {
+                        "r": 0.4,
+                        "g": 1.0,
+                        "b": 0.7,
+                        "a": 1.0
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name": "Tree",
+        "components":
+        [
+            {
+                "kind": "transform",
+                "values":
+                {
+                    "position":
+                    {
+                        "x": -5.0,
+                        "y": 2.0,
+                        "z": -10.0
+                    },
+                    "scale":
+                    {
+                        "x": 0.5,
+                        "y": 4.0,
+                        "z": 0.5
+                    }
+                }
+            },
+            {
+                "kind": "meshFilter",
+                "values":
+                {
+                    "shape": "cube"
+                }
+            },
+            {
+                "kind": "material",
+                "values":
+                {
+                    "color":
+                    {
+                        "r": 0.4,
+                        "g": 1.0,
+                        "b": 0.6,
+                        "a": 1.0
+                    }
+                }
+            }
+        ]
+    }
+]

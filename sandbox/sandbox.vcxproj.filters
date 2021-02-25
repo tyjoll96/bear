@@ -52,6 +52,8 @@
     <ClInclude Include="src\player_controller_system.h" />
     <ClInclude Include="src\ralleon_components.h" />
     <ClInclude Include="src\targetting_system.h" />
+    <ClInclude Include="src\ability_system\castbar_component.h" />
+    <ClInclude Include="src\ability_system\ability_states\ability_state_cast.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ability_system\ability.cpp">
@@ -85,5 +87,6 @@
     <ClCompile Include="src\player_controller_system.cpp" />
     <ClCompile Include="src\ralleon.cpp" />
     <ClCompile Include="src\targetting_system.cpp" />
+    <ClCompile Include="src\ability_system\ability_states\ability_state_cast.cpp" />
   </ItemGroup>
 </Project>

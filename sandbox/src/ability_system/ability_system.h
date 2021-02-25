@@ -8,6 +8,7 @@
 
 #include "ability.h"
 #include "ability_caster_component.h"
+#include "castbar_component.h"
 #include "ability_catalog.h"
 
 namespace ralleon

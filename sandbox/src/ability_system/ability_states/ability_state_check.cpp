@@ -19,7 +19,7 @@ void ralleon::AbilityStateCheck::OnUpdate(entt::registry& registry, float delta_
 	auto target_transform = registry.get<bear::TransformComponent>(ability_caster->Target);
 
 	// check target in range
-	float distance_to_target = glm::distance(caster_transform.Transform[3], target_transform.Transform[3]);
+	float distance_to_target = glm::distance(caster_transform.GetTransform()[3], target_transform.GetTransform()[3]);
 
 	if (distance_to_target > range_)
 	{

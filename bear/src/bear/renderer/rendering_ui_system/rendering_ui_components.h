@@ -10,6 +10,7 @@ namespace bear
 		glm::vec4 Color;
 		bgfx::TextureHandle Image;
 		bool ImageSet = false;
+		float Fill = 1.0f;
 
 		ImageComponent() = default;
 		ImageComponent(const ImageComponent&) = default;

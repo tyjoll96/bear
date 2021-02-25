@@ -62,7 +62,7 @@ namespace bear
 		for (auto entity : registry_view)
 		{
 			auto [sprite, transform] = registry_view.get<SpriteComponent, TransformComponent>(entity);
-			bgfx::setTransform(&transform.Transform);
+			bgfx::setTransform(&transform.GetTransform());
 			bgfx::setVertexBuffer(0, quad_vbh_);
 			bgfx::setIndexBuffer(quad_ibh_);
 

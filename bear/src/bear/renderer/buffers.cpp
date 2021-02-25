@@ -15,8 +15,8 @@ namespace bear
 		return CreateRef<BGFXVertexBuffer>(data, size, layout);
 	}
 
-	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
+	Ref<IndexBuffer> IndexBuffer::Create(const void* indices, uint32_t count)
 	{
-		return Ref<IndexBuffer>();
+		return CreateRef<BGFXIndexBuffer>(indices, count);
 	}
 }

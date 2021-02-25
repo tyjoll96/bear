@@ -2,6 +2,7 @@
 #include "ability_state_animation_post_apply.h"
 
 #include "../ability.h"
+#include "../castbar_component.h"
 
 namespace ralleon
 {

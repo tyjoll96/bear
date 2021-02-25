@@ -4,6 +4,7 @@
 
 #include "ability_states/ability_state_base.h"
 #include "ability_states/ability_state_check.h"
+#include "ability_states/ability_state_cast.h"
 #include "ability_states/ability_state_animation_pre_apply.h"
 #include "ability_states/ability_state_apply.h"
 #include "ability_states/ability_state_animation_post_apply.h"
@@ -29,9 +30,10 @@ namespace ralleon
 			},
 			std::map<AbilityState, std::shared_ptr<AbilityStateBase>> {
 				{ AbilityState::kCheck, std::make_shared<AbilityStateCheck>(AbilityStateCheck(25.0f)) },
-				{ AbilityState::kAnimationPreApply, std::make_shared<AbilityStateAnimationPreApply>(AbilityStateAnimationPreApply(std::chrono::seconds(2))) },
-				{ AbilityState::kAnimationPostApply, std::make_shared<AbilityStateAnimationPostApply>(AbilityStateAnimationPostApply(std::chrono::seconds(2))) },
+				{ AbilityState::kCast, std::make_shared<AbilityStateCast>(AbilityStateCast(std::chrono::seconds(1))) },
+				{ AbilityState::kAnimationPreApply, std::make_shared<AbilityStateAnimationPreApply>(AbilityStateAnimationPreApply(std::chrono::milliseconds(500))) },
 				{ AbilityState::kApply, std::make_shared<AbilityStateApply>() },
+				{ AbilityState::kAnimationPostApply, std::make_shared<AbilityStateAnimationPostApply>(AbilityStateAnimationPostApply(std::chrono::milliseconds(250))) },
 			}
 		);
 	}

@@ -24,6 +24,7 @@ namespace bear
 		bgfx::TextureHandle default_image_texture_;
 		bgfx::UniformHandle u_image_tex_;
 		bgfx::UniformHandle u_color;
+		bgfx::UniformHandle u_fill;
 
 		bgfx::VertexBufferHandle quad_vbh_;
 		bgfx::IndexBufferHandle quad_ibh_;

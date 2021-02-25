@@ -1362,6 +1362,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\bear\renderer\mesh.h" />
+    <ClInclude Include="src\platform\bgfx\bgfx_mesh.h" />
+    <ClInclude Include="src\platform\bgfx\bounds.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\bear\core\application.cpp">
@@ -1403,5 +1406,11 @@
     <ClCompile Include="src\platform\bgfx\bgfx_utils.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
+    <ClCompile Include="src\bear\renderer\mesh.cpp" />
+    <ClCompile Include="src\platform\bgfx\bgfx_mesh.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\bear\renderer\rendering_ui_system\fs_image.sc" />
+    <None Include="src\bear\renderer\rendering_ui_system\vs_image.sc" />
   </ItemGroup>
 </Project>

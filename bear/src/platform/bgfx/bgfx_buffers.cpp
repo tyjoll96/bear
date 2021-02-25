@@ -45,9 +45,15 @@ namespace bear
 		return bgfx::AttribType::Uint8;
 	}
 
-	BGFXVertexBuffer::BGFXVertexBuffer(const VertexLayout& layout)
+	BGFXVertexBuffer::BGFXVertexBuffer(const bear::VertexLayout& layout)
 	{
 		layout_ = CreateLayout(layout);
+		handle_ = bgfx::createDynamicVertexBuffer(nullptr, layout_);
+	}
+
+	BGFXVertexBuffer::BGFXVertexBuffer(const bgfx::VertexLayout& layout)
+		: layout_(layout)
+	{
 		handle_ = bgfx::createDynamicVertexBuffer(nullptr, layout_);
 	}
 
@@ -55,6 +61,12 @@ namespace bear
 		: data_(data), size_(size)
 	{
 		layout_ = CreateLayout(layout);
+		handle_ = bgfx::createDynamicVertexBuffer(bgfx::makeRef(data, size), layout_);
+	}
+
+	BGFXVertexBuffer::BGFXVertexBuffer(void* data, uint32_t size, const bgfx::VertexLayout& layout)
+		: data_(data), size_(size), layout_(layout)
+	{
 		handle_ = bgfx::createDynamicVertexBuffer(bgfx::makeRef(data, size), layout_);
 	}
 
@@ -82,7 +94,7 @@ namespace bear
 
 		bgfx_layout.begin();
 
-		for (auto element : layout.GetElements())
+		for (const auto element : layout.GetElements())
 		{
 			bgfx_layout.add(
 				ShaderDataAttribToBgfx(element.Attrib),
@@ -94,5 +106,24 @@ namespace bear
 		bgfx_layout.end();
 
 		return bgfx_layout;
+	}
+
+	BGFXIndexBuffer::BGFXIndexBuffer(const void* indices, uint32_t count)
+	{
+		handle_ = bgfx::createIndexBuffer(bgfx::makeRef(indices, count));
+	}
+
+	BGFXIndexBuffer::~BGFXIndexBuffer()
+	{
+	}
+
+	void BGFXIndexBuffer::Bind() const
+	{
+		bgfx::setIndexBuffer(handle_);
+	}
+
+	void BGFXIndexBuffer::Unbind() const
+	{
+		bgfx::setIndexBuffer(nullptr);
 	}
 }

@@ -16,3 +16,6 @@
 [submodule "bear/vendor/bx"]
 	path = bear/vendor/bx
 	url = https://github.com/bkaradzic/bx
+[submodule "bear\\vendor\\json"]
+	path = bear\\vendor\\json
+	url = https://github.com/nlohmann/json

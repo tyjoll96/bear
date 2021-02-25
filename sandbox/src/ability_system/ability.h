@@ -20,6 +20,7 @@ namespace ralleon
 	{
 		kWait,
 		kCheck,
+		kCast,
 		kAnimationPreApply,
 		kApply,
 		kAnimationPostApply,

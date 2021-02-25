@@ -144,8 +144,10 @@
     <ClInclude Include="src\ability_system\ability_states\ability_state_animation_pre_apply.h" />
     <ClInclude Include="src\ability_system\ability_states\ability_state_apply.h" />
     <ClInclude Include="src\ability_system\ability_states\ability_state_base.h" />
+    <ClInclude Include="src\ability_system\ability_states\ability_state_cast.h" />
     <ClInclude Include="src\ability_system\ability_states\ability_state_check.h" />
     <ClInclude Include="src\ability_system\ability_system.h" />
+    <ClInclude Include="src\ability_system\castbar_component.h" />
     <ClInclude Include="src\camera_follow_system.h" />
     <ClInclude Include="src\player_controller_system.h" />
     <ClInclude Include="src\ralleon_components.h" />
@@ -159,6 +161,7 @@
     <ClCompile Include="src\ability_system\ability_states\ability_state_animation_pre_apply.cpp" />
     <ClCompile Include="src\ability_system\ability_states\ability_state_apply.cpp" />
     <ClCompile Include="src\ability_system\ability_states\ability_state_base.cpp" />
+    <ClCompile Include="src\ability_system\ability_states\ability_state_cast.cpp" />
     <ClCompile Include="src\ability_system\ability_states\ability_state_check.cpp" />
     <ClCompile Include="src\ability_system\ability_system.cpp" />
     <ClCompile Include="src\camera_follow_system.cpp" />

@@ -11,6 +11,7 @@ namespace bear
 {
 	struct TagComponent
 	{
+		bool IsActive = true;
 		std::string Tag;
 
 		TagComponent() = default;
@@ -21,25 +22,36 @@ namespace bear
 
 	struct TransformComponent
 	{
-		glm::mat4 Transform = glm::mat4(1.0f);
-
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
 
-		operator glm::mat4() { return Transform; }
-		operator const glm::mat4() const { return Transform; }
-
 		const glm::vec3 Forward() const
 		{
-			glm::mat4 inverse = glm::inverse(Transform);
+			glm::mat4 inverse = glm::inverse(transform_);
 			return glm::normalize(glm::vec3(inverse[0][2], inverse[1][2], inverse[2][2]));
 		}
 
 		const glm::vec3 Right() const
 		{
-			glm::mat4 inverse = glm::inverse(Transform);
+			glm::mat4 inverse = glm::inverse(transform_);
 			return glm::normalize(glm::vec3(inverse[0][0], inverse[1][0], inverse[2][0]));
 		}
+
+		void LookAt(const glm::vec3& center, const glm::vec3& up)
+		{
+			glm::vec3 direction = glm::normalize(center - position_);
+			float dot = glm::dot({ 0.0f, 0.0f, -1.0f }, direction);
+
+			float angle = glm::degrees(acosf(dot));
+
+			glm::vec3 cross = glm::cross({ 0.0f, 0.0f, 1.0f }, direction);
+			glm::quat q = glm::angleAxis(angle, cross);
+			//glm::quat q = glm::quatLookAt(direction, up);
+			rotation_ = q;
+			CalculateMatrix();
+		}
+
+		const glm::mat4 GetTransform() const { return transform_; }
 
 		const glm::vec3 GetPosition() const { return position_; }
 		void SetPosition(const glm::vec3& position) { position_ = position; CalculateMatrix(); }
@@ -57,18 +69,20 @@ namespace bear
 			new_mat = new_mat * glm::toMat4(rotation_);
 			new_mat = glm::scale(new_mat, scale_);
 
-			Transform = new_mat;
+			transform_ = new_mat;
 		}
+
+		glm::mat4 transform_ = glm::mat4(1.0f);
+
 		glm::vec3 position_ = glm::vec3(0.0f);
 		glm::quat rotation_ = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
 		glm::vec3 scale_ = glm::vec3(1.0f);
+
+		//entt::entity parent;
 	};
 
 	struct RectTransformComponent : public TransformComponent
 	{
-		float Height;
-		float Width;
-
 		RectTransformComponent() { CalculateMatrix(); };
 		RectTransformComponent(const RectTransformComponent&) = default;
 
@@ -86,7 +100,7 @@ namespace bear
 			new_mat = glm::scale(new_mat, scale_);
 			new_mat = glm::scale(new_mat, { width_, height_, 1.0f });
 
-			Transform = new_mat;
+			transform_ = new_mat;
 		}
 		float height_ = 100.0f;
 		float width_ = 100.0f;
