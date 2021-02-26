@@ -4,7 +4,8 @@
 
 #include "bear/core/key_codes.h"
 
-namespace bear {
+namespace bear
+{
 	class KeyEvent : public Event {
 	public:
 		inline int GetKeyCode() const { return key_code_; }
@@ -24,12 +25,12 @@ namespace bear {
 
 		uint16_t GetRepeatCount() const { return repeat_count_; }
 
-		/*std::string ToString() const override
+		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << key_code_ << " (" << repeat_count_ << " repeats)";
 			return ss.str();
-		}*/
+		}
 
 		EVENT_CLASS_TYPE(KeyPressed)
 	private:
@@ -42,12 +43,12 @@ namespace bear {
 		KeyReleasedEvent(KeyCode key_code)
 			: KeyEvent(key_code) {}
 
-		/*std::string ToString() const override
+		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyReleasedEvent: " << key_code_;
 			return ss.str();
-		}*/
+		}
 
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
@@ -57,12 +58,12 @@ namespace bear {
 		KeyTypedEvent(KeyCode key_code)
 			: KeyEvent(key_code) {}
 
-		/*std::string ToString() const override
+		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyTypedEvent: " << key_code_;
 			return ss.str();
-		}*/
+		}
 
 		EVENT_CLASS_TYPE(KeyTyped)
 	};

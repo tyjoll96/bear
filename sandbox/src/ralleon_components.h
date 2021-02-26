@@ -6,8 +6,8 @@ namespace ralleon
 {
 	struct CharacterComponent
 	{
-		float MissHealth = 0.0f;
 		float MaxHealth = 100.0f;
+		float MissHealth = 0.0f;
 
 		entt::entity Target = entt::null;
 
@@ -17,5 +17,14 @@ namespace ralleon
 			: MaxHealth(max_health) {}
 
 		float CurrentHealth() const { return MaxHealth - MissHealth; }
+	};
+
+	struct TargetIndicatorComponent
+	{
+		float Test;
+		TargetIndicatorComponent() = default;
+		TargetIndicatorComponent(const TargetIndicatorComponent&) = default;
+		TargetIndicatorComponent(float test) : Test(test) {}
+
 	};
 }

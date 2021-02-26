@@ -3,6 +3,7 @@
 #include "bear/core/application.h"
 #include "bear/core/input.h"
 #include "bear/core/key_codes.h"
+#include "bear/core/mouse_button_codes.h"
 
 #include "bear/scene/world.h"
 #include "bear/scene/system.h"

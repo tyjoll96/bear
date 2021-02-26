@@ -2,8 +2,9 @@
 
 #include "event.h"
 
-namespace bear {
-	/*class WindowResizeEvent : public Event {
+namespace bear
+{
+	class WindowResizeEvent : public Event {
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
 			: width_(width), height_(height) {}
@@ -22,7 +23,7 @@ namespace bear {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	private:
 		unsigned int width_, height_;
-	};*/
+	};
 
 	class WindowCloseEvent : public Event {
 	public:

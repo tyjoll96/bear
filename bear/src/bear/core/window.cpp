@@ -12,7 +12,7 @@
 //#include "platform/opengl/opengl_context.h"
 #include "bear/events/application_event.h"
 #include "bear/events/key_event.h"
-//#include "rally/events/mouse_event.h"
+#include "bear/events/mouse_event.h"
 
 namespace bear {
 	static bool glfw_initialized = false;
@@ -61,7 +61,7 @@ namespace bear {
 		glfwSetWindowUserPointer(window_, &data_);
 		SetVSync(true);
 
-		/*glfwSetWindowSizeCallback(window_, [](GLFWwindow* window, int width, int height) {
+		glfwSetWindowSizeCallback(window_, [](GLFWwindow* window, int width, int height) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			data.Width = width;
@@ -69,7 +69,7 @@ namespace bear {
 
 			WindowResizeEvent event(width, height);
 			data.EventCallback(event);
-			});*/
+		});
 
 		glfwSetWindowCloseCallback(window_, [](GLFWwindow* window) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -106,7 +106,7 @@ namespace bear {
 			data.EventCallback(event);
 			});*/
 
-		/*glfwSetMouseButtonCallback(window_, [](GLFWwindow* window, int button, int action, int mods) {
+		glfwSetMouseButtonCallback(window_, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			switch (action) {
@@ -121,21 +121,21 @@ namespace bear {
 				break;
 			}
 			}
-			});*/
+		});
 
-		/*glfwSetScrollCallback(window_, [](GLFWwindow* window, double x_offset, double  y_offset) {
+		glfwSetScrollCallback(window_, [](GLFWwindow* window, double x_offset, double  y_offset) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			MouseScrolledEvent event((float)x_offset, (float)y_offset);
 			data.EventCallback(event);
-			});*/
+		});
 
-		/*glfwSetCursorPosCallback(window_, [](GLFWwindow* window, double x_pos, double  y_pos) {
+		glfwSetCursorPosCallback(window_, [](GLFWwindow* window, double x_pos, double  y_pos) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			MouseMovedEvent event((float)x_pos, (float)y_pos);
 			data.EventCallback(event);
-			});*/
+		});
 
 		bgfx::Init init;
 		init.platformData.nwh = glfwGetWin32Window(window_);

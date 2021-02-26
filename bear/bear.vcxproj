@@ -146,10 +146,12 @@
     <ClInclude Include="src\bear\core\entry_point.h" />
     <ClInclude Include="src\bear\core\input.h" />
     <ClInclude Include="src\bear\core\key_codes.h" />
+    <ClInclude Include="src\bear\core\mouse_button_codes.h" />
     <ClInclude Include="src\bear\core\window.h" />
     <ClInclude Include="src\bear\events\application_event.h" />
     <ClInclude Include="src\bear\events\event.h" />
     <ClInclude Include="src\bear\events\key_event.h" />
+    <ClInclude Include="src\bear\events\mouse_event.h" />
     <ClInclude Include="src\bear\physics\physics_components.h" />
     <ClInclude Include="src\bear\physics\physics_system.h" />
     <ClInclude Include="src\bear\renderer\buffers.h" />

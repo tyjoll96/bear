@@ -1,10 +1,12 @@
 #pragma once
 
 #include <ostream>
+#include <sstream>
 
 #include "bear/core/core.h"
 
-namespace bear {
+namespace bear
+{
 	enum class EventType {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,

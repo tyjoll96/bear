@@ -6,6 +6,7 @@
 
 #include "bear.h"
 #include "bear/events/key_event.h"
+#include "bear/events/mouse_event.h"
 
 #include "ralleon_components.h"
 
@@ -27,10 +28,11 @@ namespace ralleon
 		virtual void OnEvent(bear::Event& e);
 
 		bool OnKeyPressedEvent(bear::KeyPressedEvent& e);
+		bool OnMouseButtonPressedEvent(bear::MouseButtonPressedEvent& e);
 	private:
 		bear::EntityHandle player_entity_;
 
-		bool look_for_target = false;
+		bool look_for_target_ = false;
 
 		//std::vector<TargetCooldown> target_cooldowns_;
 	};

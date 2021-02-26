@@ -29,20 +29,20 @@ public:
 			//bear::Mesh::Create("assets/gltf/bunny.bin");
 			mesh_entity.AddComponent<bear::MeshTestComponent>(bear::Mesh::Create("assets/gltf/sphere.bin"));
 			bear::TransformComponent tc;
-			tc.SetPosition({ 0.0f, 2.0f, 0.0f });
+			tc.SetPosition({ 0.0f, 1.0f, 0.0f });
 			mesh_entity.AddComponent<bear::TransformComponent>(tc);
 		}
 
-		/*bear::EntityHandle sprite_entity = world_->CreateEntity("Image");
+		auto target_indicator = world_->CreateEntity("Target Indicator");
 		{
-			auto th = bear::BgfxUtils::LoadTexture("assets/textures/offense_idle.ktx");
-			sprite_entity.AddComponent<bear::SpriteComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), th);
 			bear::TransformComponent tc;
-			tc.SetScale({ 9.0f, 9.0f, 1.0f });
-			sprite_entity.AddComponent<bear::TransformComponent>(tc);
+			tc.SetPosition({ 999, 999, 999 });
+			target_indicator.AddComponent<bear::TransformComponent>(tc);
+			target_indicator.AddComponent<TargetIndicatorComponent>();
+			target_indicator.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kDiamond);
 		}
 
-		bear::EntityHandle image = world_->CreateEntity("Image");
+		/*bear::EntityHandle image = world_->CreateEntity("Image");
 		{
 			bear::RectTransformComponent rtc;
 			rtc.SetPosition({ 0.0f, -240.0f, -1.0f });
@@ -68,28 +68,6 @@ public:
 			c.StartTime = std::chrono::high_resolution_clock::now();
 			castbar.AddComponent<CastbarComponent>(c);
 		}
-
-		/*bear::EntityHandle option2 = world_->CreateEntity("Option 2");
-		{
-			bear::RectTransformComponent rtc;
-			rtc.SetPosition({ 460.0f, -180.0f, -10.0f });
-			rtc.SetHeight(48.0f);
-			rtc.SetWidth(192.0f);
-			option2.AddComponent<bear::RectTransformComponent>(rtc);
-
-			option2.AddComponent<bear::ImageComponent>(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
-		}
-
-		bear::EntityHandle option3 = world_->CreateEntity("Option 3");
-		{
-			bear::RectTransformComponent rtc;
-			rtc.SetPosition({ 460.0f, -300.0f, -10.0f });
-			rtc.SetHeight(48.0f);
-			rtc.SetWidth(192.0f);
-			option3.AddComponent<bear::RectTransformComponent>(rtc);
-
-			option3.AddComponent<bear::ImageComponent>(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
-		}*/
 
 		bear::EntityHandle camera = world_->CreateEntity("Main Camera");
 		{
@@ -157,28 +135,6 @@ public:
 		buffer << t.rdbuf();
 
 		world_->PopulateFromJson(buffer.str());
-
-		/*{
-			bear::EntityHandle tree = world_->CreateEntity("Tree");
-
-			bear::TransformComponent tc;
-			tc.SetPosition({ 5.0f, 2.0f, -5.0f });
-			tc.SetScale({ 1.0f, 4.0f, 1.0f });
-			tree.AddComponent<bear::TransformComponent>(tc);
-
-			tree.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
-		}
-
-		{
-			bear::EntityHandle tree = world_->CreateEntity("Tree");
-
-			bear::TransformComponent tc;
-			tc.SetPosition({ -5.0f, 2.0f, -10.0f });
-			tc.SetScale({ 1.0f, 4.0f, 1.0f });
-			tree.AddComponent<bear::TransformComponent>(tc);
-
-			tree.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
-		}*/
 	}
 
 	~Ralleon()
