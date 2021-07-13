@@ -1367,6 +1367,7 @@
     <ClInclude Include="src\platform\bgfx\bounds.h" />
     <ClInclude Include="src\bear\events\mouse_event.h" />
     <ClInclude Include="src\bear\core\mouse_button_codes.h" />
+    <ClInclude Include="src\bear\physics\physics.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\bear\core\application.cpp">

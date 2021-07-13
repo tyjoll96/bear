@@ -25,17 +25,6 @@ namespace bear
 		: System(name)
 	{
 		world_ = common.createPhysicsWorld();
-
-		rp3d::Vector3 position(0.0, 3.0, 0.0);
-		rp3d::Quaternion orientation = rp3d::Quaternion::identity();
-		rp3d::Transform transform(position, orientation);
-
-		rb_ = world_->createRigidBody(transform);
-
-		rp3d::CapsuleShape* capsule_shape = common.createCapsuleShape(1.0f, 2.0f);
-
-		rp3d::Collider* collider;
-		collider = rb_->addCollider(capsule_shape, rp3d::Transform::identity());
 	}
 
 	void PhysicsSystem::OnFixedUpdate(entt::registry& registry, float delta_time)
@@ -84,11 +73,26 @@ namespace bear
 
 			world_->update(delta_time);
 
-			 BearFromRp3d(transform, rigid_body->RigidBody->getTransform());
+			BearFromRp3d(transform, rigid_body->RigidBody->getTransform());
+		}
+
+		cur_time_ += delta_time;
+		if (cur_time_ > 1.0f)
+		{
+			cur_time_ -= 1.0f;
+			rp3d::Vector3 startPoint(0, 1, 10);
+			rp3d::Vector3 endPoint(0, 1, -20);
+			rp3d::Ray ray(startPoint, endPoint);
+
+			// Create an instance of your callback class 
+			MyCallbackClass callbackObject;
+
+			// Raycast test 
+			world_->raycast(ray, &callbackObject);
 		}
 	}
 
-	rp3d::PhysicsCommon* PhysicsSystem::GetCommon() const
+	rp3d::PhysicsCommon* PhysicsSystem::GetCommon()
 	{
 		return &common;
 	}

@@ -34,9 +34,8 @@ namespace bear
 			for (System* system : systems_)
 			{
 				system->OnFixedUpdate(registry_, timestep);
-
-				accumulator -= timestep;
 			}
+			accumulator -= timestep;
 		}
 
 		for (System* system : systems_)
