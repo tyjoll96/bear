@@ -3,7 +3,6 @@
 #include <reactphysics3d/reactphysics3d.h>
 
 #include "bear/scene/components.h"
-#include "physics_system.h"
 
 #include "bear/events/key_event.h"
 
@@ -43,5 +42,14 @@ namespace bear
 		BoxColliderComponent() = default;
 		BoxColliderComponent(const BoxColliderComponent&) = default;
 		BoxColliderComponent(rp3d::BoxShape* box_shape) : BoxShape(box_shape) {}
+	};
+	
+	struct TestRaycastComponent
+	{
+		rp3d::uint32 Id = 0;
+
+		TestRaycastComponent() = default;
+		TestRaycastComponent(const TestRaycastComponent&) = default;
+		TestRaycastComponent(rp3d::uint32 id) : Id(id) {}
 	};
 }

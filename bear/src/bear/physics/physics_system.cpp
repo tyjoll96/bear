@@ -2,11 +2,11 @@
 #include "physics_system.h"
 
 #include "bear/scene/components.h"
-#include "physics_components.h"
 
 namespace bear
 {
 	static rp3d::PhysicsCommon common;
+	static std::map<reactphysics3d::int32, entt::entity> collider_owners;
 
 	rp3d::Transform Rp3dFromBear(const TransformComponent& in)
 	{
@@ -56,9 +56,10 @@ namespace bear
 				box_collider_constructor.HalfExtents.y,
 				box_collider_constructor.HalfExtents.z });
 
-			rigid_body_component->RigidBody->addCollider(box_shape, default_transform);
+			auto collider = rigid_body_component->RigidBody->addCollider(box_shape, default_transform);
 			BoxColliderComponent box_collider_component(box_shape);
 			registry.emplace<BoxColliderComponent>(entity, box_collider_component);
+			collider_owners.emplace(collider->getEntity().id, entity);
 
 			registry.remove<BoxColliderConstructorComponent>(entity);
 		}
@@ -76,6 +77,15 @@ namespace bear
 			BearFromRp3d(transform, rigid_body->RigidBody->getTransform());
 		}
 
+		auto raycast_tests = registry.view<TestRaycastComponent>();
+		for (auto entity : raycast_tests)
+		{
+			auto test = &registry.get<TestRaycastComponent>(entity);
+			std::cout << "something hit." << std::endl;
+
+			registry.remove<TestRaycastComponent>(entity);
+		}
+
 		cur_time_ += delta_time;
 		if (cur_time_ > 1.0f)
 		{
@@ -85,7 +95,7 @@ namespace bear
 			rp3d::Ray ray(startPoint, endPoint);
 
 			// Create an instance of your callback class 
-			MyCallbackClass callbackObject;
+			MyCallbackClass callbackObject(&registry);
 
 			// Raycast test 
 			world_->raycast(ray, &callbackObject);
@@ -95,5 +105,10 @@ namespace bear
 	rp3d::PhysicsCommon* PhysicsSystem::GetCommon()
 	{
 		return &common;
+	}
+
+	entt::entity& PhysicsSystem::GetOwnerForCollider(reactphysics3d::int32 i)
+	{
+		return collider_owners[i];
 	}
 }
