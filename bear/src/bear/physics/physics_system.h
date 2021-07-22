@@ -13,6 +13,7 @@ namespace bear
 	public:
 		PhysicsSystem(const std::string& name = "Physics system");
 
+		virtual void OnUpdate(entt::registry& registry, float delta_time) override;
 		virtual void OnFixedUpdate(entt::registry& registry, float delta_time) override;
 
 		static rp3d::PhysicsCommon* GetCommon();

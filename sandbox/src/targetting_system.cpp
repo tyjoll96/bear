@@ -59,8 +59,9 @@ namespace ralleon
 			for (auto entity : view)
 			{
 				bear::TransformComponent* indicator_transform = &registry.get<bear::TransformComponent>(entity);
-				const auto& target_transform = registry.get<bear::TransformComponent>(player_character->Target);
-				indicator_transform->SetPosition(target_transform.GetPosition());
+				indicator_transform->SetParent(closest_target);
+				/*const auto& target_transform = registry.get<bear::TransformComponent>(player_character->Target);
+				indicator_transform->SetPosition(target_transform.GetPosition());*/
 			}
 
 		}

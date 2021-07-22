@@ -8,13 +8,6 @@ namespace bear
 	static rp3d::PhysicsCommon common;
 	static std::map<reactphysics3d::int32, entt::entity> collider_owners;
 
-	rp3d::Transform Rp3dFromBear(const TransformComponent& in)
-	{
-		return rp3d::Transform(
-			{ in.GetPosition().x, in.GetPosition().y, in.GetPosition().z },
-			{ in.GetRotation().x, in.GetRotation().y, in.GetRotation().z, in.GetRotation().w });
-	}
-
 	void BearFromRp3d(TransformComponent* base, const rp3d::Transform& in)
 	{
 		base->SetPosition({ in.getPosition().x, in.getPosition().y, in.getPosition().z });
@@ -27,16 +20,30 @@ namespace bear
 		world_ = common.createPhysicsWorld();
 	}
 
+	void PhysicsSystem::OnUpdate(entt::registry& registry, float delta_time)
+	{
+		auto transforms = registry.view<TransformComponent>();
+		for (auto entity : transforms)
+		{
+			auto transform = &registry.get<TransformComponent>(entity);
+			if (transform->GetParent() == entt::null) continue;
+
+			std::cout << "Test" << std::endl;
+			auto parentTransform = registry.get<TransformComponent>(transform->GetParent());
+			transform->SetParentTransform(parentTransform.GetTransform());
+		}
+	}
+
 	void PhysicsSystem::OnFixedUpdate(entt::registry& registry, float delta_time)
 	{
 		auto rigid_body_constructors = registry.view<RigidBodyConstructorComponent>();
 		for (auto entity : rigid_body_constructors)
 		{
-			auto rigid_body_contrustor = registry.get<RigidBodyConstructorComponent>(entity);
+			auto rigid_body_contructor = registry.get<RigidBodyConstructorComponent>(entity);
 
 			rp3d::Transform default_transform(rp3d::Vector3::zero(), rp3d::Quaternion::identity());
 			rp3d::RigidBody* rigid_body = world_->createRigidBody(default_transform);
-			rigid_body->setType(rigid_body_contrustor.BodyType);
+			rigid_body->setType(rigid_body_contructor.BodyType);
 
 			RigidBodyComponent rigid_body_component(rigid_body);
 			registry.emplace<RigidBodyComponent>(entity, rigid_body_component);
@@ -70,7 +77,7 @@ namespace bear
 			auto transform = &registry.get<TransformComponent>(entity);
 			auto rigid_body = &registry.get<RigidBodyComponent>(entity);
 
-			rigid_body->RigidBody->setTransform(Rp3dFromBear(*transform));
+			rigid_body->SetTransform(*transform);
 
 			world_->update(delta_time);
 
@@ -81,7 +88,7 @@ namespace bear
 		for (auto entity : raycast_tests)
 		{
 			auto test = &registry.get<TestRaycastComponent>(entity);
-			std::cout << "something hit." << std::endl;
+			//std::cout << "something hit." << std::endl;
 
 			registry.remove<TestRaycastComponent>(entity);
 		}

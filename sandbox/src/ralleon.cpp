@@ -26,7 +26,7 @@ public:
 
 		bear::EntityHandle mesh_entity = world_->CreateEntity("Mesh");
 		{
-			//bear::Mesh::Create("assets/gltf/bunny.bin");
+			//mesh_entity.AddComponent<bear::MeshTestComponent>(bear::Mesh::Create("assets/gltf/bunny.bin"));
 			mesh_entity.AddComponent<bear::MeshTestComponent>(bear::Mesh::Create("assets/gltf/sphere.bin"));
 			bear::TransformComponent tc;
 			tc.SetPosition({ 0.0f, 1.0f, 0.0f });
@@ -36,7 +36,6 @@ public:
 		auto target_indicator = world_->CreateEntity("Target Indicator");
 		{
 			bear::TransformComponent tc;
-			tc.SetPosition({ 999, 999, 999 });
 			target_indicator.AddComponent<bear::TransformComponent>(tc);
 			target_indicator.AddComponent<TargetIndicatorComponent>();
 			target_indicator.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kDiamond);

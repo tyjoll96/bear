@@ -24,6 +24,18 @@ namespace bear
 		RigidBodyComponent() = default;
 		RigidBodyComponent(const RigidBodyComponent&) = default;
 		RigidBodyComponent(rp3d::RigidBody* rigid_body) : RigidBody(rigid_body) {}
+
+		static rp3d::Transform Rp3dFromBear(const TransformComponent& in)
+		{
+			return rp3d::Transform(
+				{ in.GetPosition().x, in.GetPosition().y, in.GetPosition().z },
+				{ in.GetRotation().x, in.GetRotation().y, in.GetRotation().z, in.GetRotation().w });
+		}
+
+		void SetTransform(const bear::TransformComponent& in)
+		{
+			RigidBody->setTransform(Rp3dFromBear(in));
+		}
 	};
 
 	struct BoxColliderConstructorComponent

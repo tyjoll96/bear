@@ -61,6 +61,11 @@ namespace bear
 
 		const glm::vec3 GetScale() const { return scale_; }
 		void SetScale(const glm::vec3& scale) { scale_ = scale; CalculateMatrix(); }
+
+		const entt::entity GetParent() const { return parent_; }
+		void SetParent(const entt::entity& parent) { parent_ = parent; }
+
+		void SetParentTransform(const glm::mat4& parent_transform) { parent_transform_ = parent_transform; CalculateMatrix(); }
 	protected:
 		virtual void CalculateMatrix()
 		{
@@ -68,6 +73,7 @@ namespace bear
 			new_mat = glm::translate(new_mat, position_);
 			new_mat = new_mat * glm::toMat4(rotation_);
 			new_mat = glm::scale(new_mat, scale_);
+			new_mat *= parent_transform_;
 
 			transform_ = new_mat;
 		}
@@ -78,7 +84,8 @@ namespace bear
 		glm::quat rotation_ = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
 		glm::vec3 scale_ = glm::vec3(1.0f);
 
-		//entt::entity parent;
+		entt::entity parent_ = entt::null;
+		glm::mat4 parent_transform_ = glm::mat4(1.0f);
 	};
 
 	struct RectTransformComponent : public TransformComponent
