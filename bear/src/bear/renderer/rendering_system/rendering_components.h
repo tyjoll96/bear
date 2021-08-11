@@ -3,6 +3,11 @@
 #include "bear/renderer/buffers.h"
 #include "bear/renderer/mesh.h"
 
+#include <reactphysics3d/reactphysics3d.h>
+
+#include "bear/core/application.h"
+#include "bear/core/input.h"
+
 namespace bear
 {
 	struct PosColorVertex
@@ -80,6 +85,29 @@ namespace bear
 		PerspectiveCameraComponent(glm::mat4 projection)
 			: Projection(projection)
 		{
+		}
+
+		rp3d::Ray ScreenPointToRay(glm::vec3 model)
+		{
+			glm::vec3 start_point, end_point;
+
+			// Input::GetMousePosition() for mouse positions.
+			auto mouse_position = Input::GetMousePosition();
+			glm::vec3 screen_point(mouse_position.first, mouse_position.second, 0.0f);
+
+			// Application::Get().GetWindow() for window size or hard code to 1280x720.
+			glm::vec4 viewport(0, 0, 1280, 720);
+
+			// Calculate the things.
+			glm::vec3 direction = glm::unProject(screen_point, View, Projection, viewport);
+
+			std::cout << direction.x << direction.y << direction.z << std::endl;
+
+			return
+			{
+				{ start_point.x, start_point.y, start_point.z },
+				{ end_point.x, end_point.y, end_point.z }
+			};
 		}
 	};
 

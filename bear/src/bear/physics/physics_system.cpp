@@ -87,7 +87,7 @@ namespace bear
 			rp3d::Ray ray(startPoint, endPoint);
 
 			// Create an instance of your callback class 
-			RaycastHit hit(&registry);
+			RaycastHit hit;
 
 			// Raycast test 
 			world->raycast(ray, &hit);
