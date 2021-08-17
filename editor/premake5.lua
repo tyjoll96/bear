@@ -1,4 +1,4 @@
-project "sandbox"
+project "editor"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"

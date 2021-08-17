@@ -63,6 +63,7 @@ namespace bear
 	void World::AddSystem(System* system)
 	{
 		systems_.push_back(system);
+		system->OnAttach();
 	}
 
 	Shapes ShapeFromString(const std::string& s)

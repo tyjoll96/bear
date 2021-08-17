@@ -78,6 +78,9 @@
     <ClInclude Include="src\bear\core\key_codes.h">
       <Filter>src\bear\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\bear\core\mouse_button_codes.h">
+      <Filter>src\bear\core</Filter>
+    </ClInclude>
     <ClInclude Include="src\bear\core\window.h">
       <Filter>src\bear\core</Filter>
     </ClInclude>
@@ -90,6 +93,12 @@
     <ClInclude Include="src\bear\events\key_event.h">
       <Filter>src\bear\events</Filter>
     </ClInclude>
+    <ClInclude Include="src\bear\events\mouse_event.h">
+      <Filter>src\bear\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bear\physics\physics.h">
+      <Filter>src\bear\physics</Filter>
+    </ClInclude>
     <ClInclude Include="src\bear\physics\physics_components.h">
       <Filter>src\bear\physics</Filter>
     </ClInclude>
@@ -97,6 +106,9 @@
       <Filter>src\bear\physics</Filter>
     </ClInclude>
     <ClInclude Include="src\bear\renderer\buffers.h">
+      <Filter>src\bear\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bear\renderer\mesh.h">
       <Filter>src\bear\renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\bear\renderer\rendering_2d_system\rendering_2d_system.h">
@@ -135,7 +147,13 @@
     <ClInclude Include="src\platform\bgfx\bgfx_buffers.h">
       <Filter>src\platform\bgfx</Filter>
     </ClInclude>
+    <ClInclude Include="src\platform\bgfx\bgfx_mesh.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
     <ClInclude Include="src\platform\bgfx\bgfx_utils.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\bgfx\bounds.h">
       <Filter>src\platform\bgfx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
@@ -1362,12 +1380,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\bear\renderer\mesh.h" />
-    <ClInclude Include="src\platform\bgfx\bgfx_mesh.h" />
-    <ClInclude Include="src\platform\bgfx\bounds.h" />
-    <ClInclude Include="src\bear\events\mouse_event.h" />
-    <ClInclude Include="src\bear\core\mouse_button_codes.h" />
-    <ClInclude Include="src\bear\physics\physics.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\bear\core\application.cpp">
@@ -1383,6 +1395,9 @@
       <Filter>src\bear\physics</Filter>
     </ClCompile>
     <ClCompile Include="src\bear\renderer\buffers.cpp">
+      <Filter>src\bear\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bear\renderer\mesh.cpp">
       <Filter>src\bear\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\bear\renderer\rendering_2d_system\rendering_2d_system.cpp">
@@ -1406,14 +1421,11 @@
     <ClCompile Include="src\platform\bgfx\bgfx_buffers.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
+    <ClCompile Include="src\platform\bgfx\bgfx_mesh.cpp">
+      <Filter>src\platform\bgfx</Filter>
+    </ClCompile>
     <ClCompile Include="src\platform\bgfx\bgfx_utils.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
-    <ClCompile Include="src\bear\renderer\mesh.cpp" />
-    <ClCompile Include="src\platform\bgfx\bgfx_mesh.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\bear\renderer\rendering_ui_system\fs_image.sc" />
-    <None Include="src\bear\renderer\rendering_ui_system\vs_image.sc" />
   </ItemGroup>
 </Project>

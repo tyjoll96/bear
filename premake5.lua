@@ -17,6 +17,7 @@ includedir["GLFW"] = "%{wks.location}/bear/vendor/GLFW/include"
 includedir["glm"] = "%{wks.location}/bear/vendor/glm"
 includedir["entt"] = "%{wks.location}/bear/vendor/entt/include"
 includedir["reactphysics3d"] = "%{wks.location}/bear/vendor/reactphysics3d/include"
+includedir["imgui"] = "%{wks.location}/bear/vendor/imgui"
 
 includedir["bgfx"] = "%{wks.location}/bear/vendor/bgfx/include"
 includedir["bimg"] = "%{wks.location}/bear/vendor/bimg/include"
@@ -453,6 +454,36 @@ group "Dependencies"
 		filter "configurations:Release"
 			runtime "Release"
 			optimize "on"
+	project "imgui"
+		kind "StaticLib"
+		language "C++"
+		location "./build"
+		basedir "bear/vendor/imgui"
+		
+		-- targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+		-- objdir ("obj/" .. outputdir .. "/%{prj.name}")
+	
+		files
+		{
+			"%{wks.location}/bear/vendor/imgui/imconfig.h",
+			"%{wks.location}/bear/vendor/imgui/imgui.h",
+			"%{wks.location}/bear/vendor/imgui/imgui.cpp",
+			"%{wks.location}/bear/vendor/imgui/imgui_draw.cpp",
+			"%{wks.location}/bear/vendor/imgui/imgui_internal.h",
+			"%{wks.location}/bear/vendor/imgui/imgui_widgets.cpp",
+			"%{wks.location}/bear/vendor/imgui/imstb_rectpack.h",
+			"%{wks.location}/bear/vendor/imgui/imstb_textedit.h",
+			"%{wks.location}/bear/vendor/imgui/imstb_truetype.h",
+			"%{wks.location}/bear/vendor/imgui/imgui_demo.cpp"
+		}
+		
+		filter "system:windows"
+			systemversion "latest"
+			cppdialect "C++17"
+			staticruntime "On"
+			
+		filter { "system:windows", "configurations:Release" }
+			buildoptions "/MT"
 group ""
 
 group "Games"
@@ -461,3 +492,4 @@ group ""
 
 include "bear"
 include "sandbox"
+include "editor"
