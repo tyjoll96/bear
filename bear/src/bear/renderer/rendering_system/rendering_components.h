@@ -87,21 +87,32 @@ namespace bear
 		{
 		}
 
-		rp3d::Ray ScreenPointToRay(glm::vec3 model)
+		rp3d::Ray ScreenPointToRay(glm::vec3 start)
 		{
-			glm::vec3 start_point, end_point;
+			glm::vec3 start_point = start;
+			glm::vec3 end_point(0.0f);
 
-			// Input::GetMousePosition() for mouse positions.
 			auto mouse_position = Input::GetMousePosition();
-			glm::vec3 screen_point(mouse_position.first, mouse_position.second, 0.0f);
+			float mouse_x = mouse_position.first / (1280 * 0.5f) - 1.0f;
+			float mouse_y = -1.0f * (mouse_position.second / (720 * 0.5f) - 1.0f);
+			// glm::vec3 screen_point(mouse_position.first, mouse_position.second, 0.1f);
 
 			// Application::Get().GetWindow() for window size or hard code to 1280x720.
-			glm::vec4 viewport(0, 0, 1280, 720);
+			// glm::vec4 viewport(0, 0, 1280, 720);
 
 			// Calculate the things.
-			glm::vec3 direction = glm::unProject(screen_point, View, Projection, viewport);
+			// glm::vec3 direction = glm::unProject(screen_point, View, Projection, viewport);
 
-			std::cout << direction.x << direction.y << direction.z << std::endl;
+
+			// NON UNPROJECT METHOD
+			glm::mat4 invVP = glm::inverse(Projection * View);
+			glm::vec4 screenPos = glm::vec4(mouse_x, mouse_y, 1.0f, 1.0f);
+			glm::vec4 worldPos = invVP * screenPos;
+
+			glm::vec3 dir = glm::normalize(glm::vec3(worldPos));
+
+			end_point = start_point + dir * 10.0f;
+			std::cout << start_point.x << std::endl << start_point.y << std::endl << start_point.z << std::endl;
 
 			return
 			{
