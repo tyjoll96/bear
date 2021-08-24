@@ -459,6 +459,7 @@ group "Dependencies"
 		language "C++"
 		location "./build"
 		basedir "bear/vendor/imgui"
+		staticruntime "on"
 		
 		-- targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		-- objdir ("obj/" .. outputdir .. "/%{prj.name}")
@@ -477,13 +478,13 @@ group "Dependencies"
 			"%{wks.location}/bear/vendor/imgui/imgui_demo.cpp"
 		}
 		
-		filter "system:windows"
-			systemversion "latest"
-			cppdialect "C++17"
-			staticruntime "On"
-			
-		filter { "system:windows", "configurations:Release" }
-			buildoptions "/MT"
+		filter "configurations:Debug"
+			runtime "Debug"
+			symbols "on"
+	
+		filter "configurations:Release"
+			runtime "Release"
+			optimize "on"
 group ""
 
 group "Games"

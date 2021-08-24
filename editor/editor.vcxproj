@@ -134,6 +134,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ui_system.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\editor.cpp" />
+    <ClCompile Include="src\ui_system.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\build\bgfx.vcxproj">
       <Project>{6C90947C-58C7-950D-01B4-7B10EDC9110F}</Project>
     </ProjectReference>

@@ -172,6 +172,9 @@
     <ClInclude Include="src\platform\bgfx\bgfx_mesh.h" />
     <ClInclude Include="src\platform\bgfx\bgfx_utils.h" />
     <ClInclude Include="src\platform\bgfx\bounds.h" />
+    <ClInclude Include="src\platform\bgfx\fs_ocornut_imgui.bin.h" />
+    <ClInclude Include="src\platform\bgfx\imgui_impl_bgfx.h" />
+    <ClInclude Include="src\platform\bgfx\vs_ocornut_imgui.bin.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -599,6 +602,7 @@
     <ClCompile Include="src\platform\bgfx\bgfx_buffers.cpp" />
     <ClCompile Include="src\platform\bgfx\bgfx_mesh.cpp" />
     <ClCompile Include="src\platform\bgfx\bgfx_utils.cpp" />
+    <ClCompile Include="src\platform\bgfx\imgui_impl_bgfx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\build\bgfx.vcxproj">

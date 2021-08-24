@@ -156,6 +156,15 @@
     <ClInclude Include="src\platform\bgfx\bounds.h">
       <Filter>src\platform\bgfx</Filter>
     </ClInclude>
+    <ClInclude Include="src\platform\bgfx\fs_ocornut_imgui.bin.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\bgfx\imgui_impl_bgfx.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\bgfx\vs_ocornut_imgui.bin.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
@@ -1425,6 +1434,9 @@
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\bgfx\bgfx_utils.cpp">
+      <Filter>src\platform\bgfx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\bgfx\imgui_impl_bgfx.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
   </ItemGroup>
