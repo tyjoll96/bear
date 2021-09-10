@@ -3,6 +3,8 @@
 #include "bear.h"
 #include "bear/core/entry_point.h"
 
+#include "ui_system.h"
+
 namespace editor
 {
 	class Editor : public bear::Application
@@ -12,6 +14,8 @@ namespace editor
 			: Application("Bear Editor")
 		{
 			std::cout << "hello world" << std::endl;
+
+			world_->AddSystem(new UiSystem);
 		}
 		
 		~Editor()

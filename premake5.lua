@@ -471,6 +471,7 @@ group "Dependencies"
 			"%{wks.location}/bear/vendor/imgui/imgui.cpp",
 			"%{wks.location}/bear/vendor/imgui/imgui_draw.cpp",
 			"%{wks.location}/bear/vendor/imgui/imgui_internal.h",
+			"%{wks.location}/bear/vendor/imgui/imgui_tables.cpp",
 			"%{wks.location}/bear/vendor/imgui/imgui_widgets.cpp",
 			"%{wks.location}/bear/vendor/imgui/imstb_rectpack.h",
 			"%{wks.location}/bear/vendor/imgui/imstb_textedit.h",

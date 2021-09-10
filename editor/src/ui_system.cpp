@@ -10,11 +10,12 @@ namespace editor
 	{
 		ImGui::CreateContext();
 		ImGui_Implbgfx_Init(255);
-		ImGui::StyleColorsDark();
+		//ImGui::StyleColorsDark();
 
 		ImGuiIO& io = ImGui::GetIO();
 		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
+		io.DisplaySize = ImVec2(1280.0f, 720.0f);
 
 		//io.KeyMap
 	}
