@@ -12,5 +12,6 @@ namespace editor
 
 		virtual void OnAttach() override;
 		virtual void OnUpdate(entt::registry& registry, float delta_time) override;
+		virtual void OnImGuiUpdate() override;
 	};
 }

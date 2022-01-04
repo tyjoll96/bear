@@ -1391,6 +1391,7 @@
     </ClInclude>
     <ClInclude Include="src\platform\bgfx\fs_imgui_image.bin.h" />
     <ClInclude Include="src\platform\bgfx\vs_imgui_image.bin.h" />
+    <ClInclude Include="src\bear\imgui\imgui_system.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\bear\core\application.cpp">
@@ -1441,5 +1442,6 @@
     <ClCompile Include="src\platform\bgfx\imgui_impl_bgfx.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
+    <ClCompile Include="src\bear\imgui\imgui_system.cpp" />
   </ItemGroup>
 </Project>

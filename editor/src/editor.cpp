@@ -10,8 +10,7 @@ namespace editor
 	class Editor : public bear::Application
 	{
 	public:
-		Editor()
-			: Application("Bear Editor")
+		Editor() : Application("Bear Editor")
 		{
 			std::cout << "hello world" << std::endl;
 

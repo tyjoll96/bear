@@ -5,6 +5,7 @@
 #include <entt.hpp>
 
 #include "bear/events/event.h"
+#include "bear/imgui/imgui_system.h"
 
 #include "system.h"
 
@@ -27,11 +28,10 @@ namespace bear
 
 		static World& Get();
 	private:
-		std::vector<System*> systems_;
-
-		entt::registry registry_;
-
 		float accumulator = 0.0f;
+		ImGuiSystem* imgui_system_;
+		std::vector<System*> systems_;
+		entt::registry registry_;
 
 		friend class EntityHandle;
 	};
