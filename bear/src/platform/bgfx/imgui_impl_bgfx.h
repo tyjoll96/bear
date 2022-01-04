@@ -1,22 +1,21 @@
 #pragma once
 
-// Derived from this Gist by Richard Gale:
-//     https://gist.github.com/RichardGale/6e2b74bc42b3005e08397236e4be0fd0
+#include <bgfx/bgfx.h>
 
-// ImGui BGFX binding
+#define IMGUI_MBUT_LEFT   0x01
+#define IMGUI_MBUT_RIGHT  0x02
+#define IMGUI_MBUT_MIDDLE 0x04
 
-// You can copy and use unmodified imgui_impl_* files in your project. See
-// main.cpp for an example of using this. If you use this binding you'll need to
-// call 4 functions: ImGui_ImplXXXX_Init(), ImGui_ImplXXXX_NewFrame(),
-// ImGui::Render() and ImGui_ImplXXXX_Shutdown(). If you are new to ImGui, see
-// examples/README.txt and documentation at the top of imgui.cpp.
-// https://github.com/ocornut/imgui
+namespace bx { struct AllocatorI; }
 
-void ImGui_Implbgfx_Init(int view);
-void ImGui_Implbgfx_Shutdown();
-void ImGui_Implbgfx_NewFrame();
-void ImGui_Implbgfx_RenderDrawLists(struct ImDrawData* draw_data);
+void ImguiCreate(float fontSize = 18.0f, bx::AllocatorI* allocator = NULL);
+void ImguiDestroy();
 
-// Use if you want to reset your rendering device without losing ImGui state.
-void ImGui_Implbgfx_InvalidateDeviceObjects();
-bool ImGui_Implbgfx_CreateDeviceObjects();
+void ImguiBeginFrame(int32_t mx, int32_t my, uint8_t button, int32_t scroll, uint16_t width, uint16_t height, int input_char = -1, bgfx::ViewId view_id = 255);
+void ImguiEndFrame();
+
+namespace ImGui
+{
+#define IMGUI_FLAGS_NONE        UINT8_C(0x00)
+#define IMGUI_FLAGS_ALPHA_BLEND UINT8_C(0x01)
+}
