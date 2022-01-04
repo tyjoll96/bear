@@ -42,18 +42,22 @@
     <ClInclude Include="src\ability_system\ability_states\ability_state_base.h">
       <Filter>ability_system\ability_states</Filter>
     </ClInclude>
+    <ClInclude Include="src\ability_system\ability_states\ability_state_cast.h">
+      <Filter>ability_system\ability_states</Filter>
+    </ClInclude>
     <ClInclude Include="src\ability_system\ability_states\ability_state_check.h">
       <Filter>ability_system\ability_states</Filter>
     </ClInclude>
     <ClInclude Include="src\ability_system\ability_system.h">
       <Filter>ability_system</Filter>
     </ClInclude>
+    <ClInclude Include="src\ability_system\castbar_component.h">
+      <Filter>ability_system</Filter>
+    </ClInclude>
     <ClInclude Include="src\camera_follow_system.h" />
     <ClInclude Include="src\player_controller_system.h" />
     <ClInclude Include="src\ralleon_components.h" />
     <ClInclude Include="src\targetting_system.h" />
-    <ClInclude Include="src\ability_system\castbar_component.h" />
-    <ClInclude Include="src\ability_system\ability_states\ability_state_cast.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ability_system\ability.cpp">
@@ -77,6 +81,9 @@
     <ClCompile Include="src\ability_system\ability_states\ability_state_base.cpp">
       <Filter>ability_system\ability_states</Filter>
     </ClCompile>
+    <ClCompile Include="src\ability_system\ability_states\ability_state_cast.cpp">
+      <Filter>ability_system\ability_states</Filter>
+    </ClCompile>
     <ClCompile Include="src\ability_system\ability_states\ability_state_check.cpp">
       <Filter>ability_system\ability_states</Filter>
     </ClCompile>
@@ -87,6 +94,5 @@
     <ClCompile Include="src\player_controller_system.cpp" />
     <ClCompile Include="src\ralleon.cpp" />
     <ClCompile Include="src\targetting_system.cpp" />
-    <ClCompile Include="src\ability_system\ability_states\ability_state_cast.cpp" />
   </ItemGroup>
 </Project>

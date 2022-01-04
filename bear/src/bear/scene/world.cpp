@@ -18,7 +18,8 @@ namespace bear
 	World::World()
 	{
 		instance_ = this;
-		std::cout << timestep << std::endl;
+		imgui_system_ = new ImGuiSystem();
+		instance_->AddSystem(imgui_system_);
 	}
 
 	World::~World()
@@ -42,6 +43,13 @@ namespace bear
 		{
 			system->OnUpdate(registry_, delta_time);
 		}
+
+		imgui_system_->Begin();
+		for (System* system : systems_)
+		{
+			system->OnImGuiUpdate();
+		}
+		imgui_system_->End();
 	}
 
 	void World::OnEvent(Event& e)
@@ -63,6 +71,7 @@ namespace bear
 	void World::AddSystem(System* system)
 	{
 		systems_.push_back(system);
+		system->OnAttach();
 	}
 
 	Shapes ShapeFromString(const std::string& s)

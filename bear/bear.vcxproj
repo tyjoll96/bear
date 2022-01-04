@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>brpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>brpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>brpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -152,6 +152,7 @@
     <ClInclude Include="src\bear\events\event.h" />
     <ClInclude Include="src\bear\events\key_event.h" />
     <ClInclude Include="src\bear\events\mouse_event.h" />
+    <ClInclude Include="src\bear\imgui\imgui_system.h" />
     <ClInclude Include="src\bear\physics\physics.h" />
     <ClInclude Include="src\bear\physics\physics_components.h" />
     <ClInclude Include="src\bear\physics\physics_system.h" />
@@ -172,6 +173,11 @@
     <ClInclude Include="src\platform\bgfx\bgfx_mesh.h" />
     <ClInclude Include="src\platform\bgfx\bgfx_utils.h" />
     <ClInclude Include="src\platform\bgfx\bounds.h" />
+    <ClInclude Include="src\platform\bgfx\fs_imgui_image.bin.h" />
+    <ClInclude Include="src\platform\bgfx\fs_ocornut_imgui.bin.h" />
+    <ClInclude Include="src\platform\bgfx\imgui_impl_bgfx.h" />
+    <ClInclude Include="src\platform\bgfx\vs_imgui_image.bin.h" />
+    <ClInclude Include="src\platform\bgfx\vs_ocornut_imgui.bin.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -585,6 +591,7 @@
     <ClCompile Include="src\bear\core\application.cpp" />
     <ClCompile Include="src\bear\core\input.cpp" />
     <ClCompile Include="src\bear\core\window.cpp" />
+    <ClCompile Include="src\bear\imgui\imgui_system.cpp" />
     <ClCompile Include="src\bear\physics\physics_system.cpp" />
     <ClCompile Include="src\bear\renderer\buffers.cpp" />
     <ClCompile Include="src\bear\renderer\mesh.cpp" />
@@ -599,6 +606,7 @@
     <ClCompile Include="src\platform\bgfx\bgfx_buffers.cpp" />
     <ClCompile Include="src\platform\bgfx\bgfx_mesh.cpp" />
     <ClCompile Include="src\platform\bgfx\bgfx_utils.cpp" />
+    <ClCompile Include="src\platform\bgfx\imgui_impl_bgfx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\build\bgfx.vcxproj">
@@ -616,10 +624,9 @@
     <ProjectReference Include="..\build\reactphysics3d.vcxproj">
       <Project>{2ECAB41A-1A98-A820-032C-1947EF988485}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\bear\renderer\rendering_ui_system\fs_image.sc" />
-    <None Include="src\bear\renderer\rendering_ui_system\vs_image.sc" />
+    <ProjectReference Include="..\build\imgui.vcxproj">
+      <Project>{0098A80F-6CAC-D0C0-352E-7420A101CDF1}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
