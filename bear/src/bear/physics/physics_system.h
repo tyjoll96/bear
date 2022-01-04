@@ -17,27 +17,21 @@ namespace bear
 
 		static rp3d::PhysicsCommon* GetCommon();
 		static entt::entity& GetOwnerForCollider(reactphysics3d::int32 i);
-		//static bool Raycast(const glm::vec3& start, const glm::vec3& end, );
-		rp3d::PhysicsWorld* GetWorld() const { return world_; }
+		static void Raycast(rp3d::Ray& ray, rp3d::RaycastCallback* callback);
 	private:
-		rp3d::PhysicsWorld* world_;
 		float cur_time_ = 0.0f;
 	};
 
-	class MyCallbackClass : public rp3d::RaycastCallback
+	class RaycastHit : public rp3d::RaycastCallback
 	{
 	public:
-		MyCallbackClass(entt::registry* registry) : registry_(registry) {}
+		entt::entity Entity = entt::null;
+
 		virtual rp3d::decimal notifyRaycastHit(const rp3d::RaycastInfo& info)
 		{
-			registry_->emplace<TestRaycastComponent>(
-				PhysicsSystem::GetOwnerForCollider(info.collider->getEntity().id),
-				info.collider->getEntity().id);
+			Entity = PhysicsSystem::GetOwnerForCollider(info.collider->getEntity().id);
 
-			// Return a fraction of 1.0 to gather all hits 
-			return rp3d::decimal(1.0);
+			return rp3d::decimal(0.0); // Do not gather further hits.
 		}
-	private:
-		entt::registry* registry_;
 	};
 }

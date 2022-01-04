@@ -25,17 +25,11 @@ namespace bear
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
 
-		const glm::vec3 Forward() const
-		{
-			glm::mat4 inverse = glm::inverse(transform_);
-			return glm::normalize(glm::vec3(inverse[0][2], inverse[1][2], inverse[2][2]));
-		}
+		const glm::vec3 Forward() const { return rotation_ * glm::vec3(0.0f, 0.0f, -1.0f); }
 
-		const glm::vec3 Right() const
-		{
-			glm::mat4 inverse = glm::inverse(transform_);
-			return glm::normalize(glm::vec3(inverse[0][0], inverse[1][0], inverse[2][0]));
-		}
+		const glm::vec3 Right() const { return rotation_ * glm::vec3(1.0f, 0.0f, 0.0f); }
+
+		const glm::vec3 Up() const { return rotation_ * glm::vec3(0.0f, 1.0f, 0.0f); }
 
 		void LookAt(const glm::vec3& center, const glm::vec3& up)
 		{
@@ -68,7 +62,6 @@ namespace bear
 			new_mat = glm::translate(new_mat, position_);
 			new_mat = new_mat * glm::toMat4(rotation_);
 			new_mat = glm::scale(new_mat, scale_);
-
 			transform_ = new_mat;
 		}
 

@@ -3,6 +3,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <bgfx/bgfx.h>
 
+#include <bx/math.h>
+
 #include "bear.h"
 #include "bear/core/entry_point.h"
 #include "platform/bgfx/bgfx_utils.h"
@@ -72,10 +74,11 @@ public:
 		bear::EntityHandle camera = world_->CreateEntity("Main Camera");
 		{
 			bear::TransformComponent tc;
-			tc.SetPosition({ 0.0f, 2.0f, 10.0f });
 			camera.AddComponent<bear::TransformComponent>(tc);
 
 			glm::mat4 proj = glm::perspective(glm::radians(45.0f), float(1280) / float(720), 0.1f, 100.0f);
+			float projB[16];
+			bx::mtxProj(projB, 45.0f, float(1280) / float(720), 0.1f, 100.0f, bgfx::getCaps()->homogeneousDepth);
 			camera.AddComponent<bear::PerspectiveCameraComponent>(proj);
 		}
 
@@ -84,13 +87,13 @@ public:
 
 			bear::TransformComponent tc;
 			tc.SetPosition({ 0.0f, -0.5f, 0.0f });
-			tc.SetScale({ 10.0f, 0.5f, 10.0f });
+			tc.SetScale({ 20.0f, 0.5f, 20.0f });
 			terrain.AddComponent<bear::TransformComponent>(tc);
 
 			terrain.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kCube);
 			terrain.AddComponent<bear::MaterialComponent>(glm::vec4{ 0.5f, 0.6f, 0.2f, 1.0f });
 			terrain.AddComponent<bear::RigidBodyConstructorComponent>(rp3d::BodyType::STATIC);
-			terrain.AddComponent<bear::BoxColliderConstructorComponent>(glm::vec3(10.0f, 0.5f, 10.0f));
+			terrain.AddComponent<bear::BoxColliderConstructorComponent>(glm::vec3(20.0f, 0.5f, 20.0f));
 		}
 
 		{
@@ -103,7 +106,7 @@ public:
 
 			player.AddComponent<bear::MeshFilterComponent>(bear::Shapes::kDiamond);
 			player.AddComponent<bear::MaterialComponent>(glm::vec4{ 0.1f, 1.0f, 0.3f, 1.0f });
-			player.AddComponent<CameraFollowComponent>(camera);
+			player.AddComponent<CameraFollowComponent>(camera, glm::vec3(0.0f, 2.0f, 10.0f));
 			player.AddComponent<PlayerControllerComponent>(12.0f, 90.0f);
 			player.AddComponent<CharacterComponent>();
 			player.AddComponent<AbilityCasterComponent>();

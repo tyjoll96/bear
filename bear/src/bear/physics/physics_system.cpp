@@ -7,6 +7,7 @@ namespace bear
 {
 	static rp3d::PhysicsCommon common;
 	static std::map<reactphysics3d::int32, entt::entity> collider_owners;
+	static rp3d::PhysicsWorld* world;
 
 	rp3d::Transform Rp3dFromBear(const TransformComponent& in)
 	{
@@ -24,7 +25,7 @@ namespace bear
 	PhysicsSystem::PhysicsSystem(const std::string& name)
 		: System(name)
 	{
-		world_ = common.createPhysicsWorld();
+		world = common.createPhysicsWorld();
 	}
 
 	void PhysicsSystem::OnFixedUpdate(entt::registry& registry, float delta_time)
@@ -35,7 +36,7 @@ namespace bear
 			auto rigid_body_contrustor = registry.get<RigidBodyConstructorComponent>(entity);
 
 			rp3d::Transform default_transform(rp3d::Vector3::zero(), rp3d::Quaternion::identity());
-			rp3d::RigidBody* rigid_body = world_->createRigidBody(default_transform);
+			rp3d::RigidBody* rigid_body = world->createRigidBody(default_transform);
 			rigid_body->setType(rigid_body_contrustor.BodyType);
 
 			RigidBodyComponent rigid_body_component(rigid_body);
@@ -72,18 +73,9 @@ namespace bear
 
 			rigid_body->RigidBody->setTransform(Rp3dFromBear(*transform));
 
-			world_->update(delta_time);
+			world->update(delta_time);
 
 			BearFromRp3d(transform, rigid_body->RigidBody->getTransform());
-		}
-
-		auto raycast_tests = registry.view<TestRaycastComponent>();
-		for (auto entity : raycast_tests)
-		{
-			auto test = &registry.get<TestRaycastComponent>(entity);
-			std::cout << "something hit." << std::endl;
-
-			registry.remove<TestRaycastComponent>(entity);
 		}
 
 		cur_time_ += delta_time;
@@ -95,10 +87,10 @@ namespace bear
 			rp3d::Ray ray(startPoint, endPoint);
 
 			// Create an instance of your callback class 
-			MyCallbackClass callbackObject(&registry);
+			RaycastHit hit;
 
 			// Raycast test 
-			world_->raycast(ray, &callbackObject);
+			world->raycast(ray, &hit);
 		}
 	}
 
@@ -110,5 +102,10 @@ namespace bear
 	entt::entity& PhysicsSystem::GetOwnerForCollider(reactphysics3d::int32 i)
 	{
 		return collider_owners[i];
+	}
+
+	void bear::PhysicsSystem::Raycast(rp3d::Ray& ray, rp3d::RaycastCallback* callback)
+	{
+		world->raycast(ray, callback);
 	}
 }

@@ -31,10 +31,11 @@ namespace bear
 		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 proj;
 
-		auto camera_registry_view = registry.view<PerspectiveCameraComponent>();
+		auto camera_registry_view = registry.view<PerspectiveCameraComponent, TransformComponent>();
 		for (auto entity : camera_registry_view)
 		{
 			const auto& p_camera = registry.get<PerspectiveCameraComponent>(entity);
+			const auto& transform = registry.get<TransformComponent>(entity);
 			view = p_camera.View;
 			proj = p_camera.Projection;
 		}

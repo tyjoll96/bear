@@ -33,6 +33,8 @@ namespace ralleon
 		bear::EntityHandle player_entity_;
 
 		bool look_for_target_ = false;
+		bool raycast_ = false;
+		glm::vec2 clicked_position_ = glm::vec2(0.0f);
 
 		//std::vector<TargetCooldown> target_cooldowns_;
 	};

@@ -2,6 +2,7 @@
 #include "targetting_system.h"
 
 #include "bear/core/key_codes.h"
+#include "bear/physics/physics_system.h"
 
 namespace ralleon
 {
@@ -17,6 +18,26 @@ namespace ralleon
 
 	void TargettingSystem::OnUpdate(entt::registry& registry, float delta_time)
 	{
+		if (raycast_) {
+			raycast_ = false;
+
+			{
+				auto view = registry.view<bear::PerspectiveCameraComponent, bear::TransformComponent>();
+				for (auto entity : view)
+				{
+					auto& camera = registry.get<bear::PerspectiveCameraComponent>(entity);
+					auto& transform = registry.get<bear::TransformComponent>(entity);
+					rp3d::Ray ray = camera.ScreenPointToRay(transform.GetPosition());
+					bear::RaycastHit hit;
+					bear::PhysicsSystem::Raycast(ray, &hit);
+
+					if (hit.Entity != entt::null)
+					{
+						std::cout << "hit something?" << std::endl;
+					}
+				}
+			}
+		}
 		if (!look_for_target_) return;
 
 		look_for_target_ = false;
@@ -70,6 +91,7 @@ namespace ralleon
 	{
 		bear::EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<bear::KeyPressedEvent>(BR_BIND_EVENT_FN(TargettingSystem::OnKeyPressedEvent));
+		dispatcher.Dispatch<bear::MouseButtonPressedEvent>(BR_BIND_EVENT_FN(TargettingSystem::OnMouseButtonPressedEvent));
 	}
 
 	bool TargettingSystem::OnKeyPressedEvent(bear::KeyPressedEvent& e)
@@ -83,7 +105,15 @@ namespace ralleon
 
 	bool TargettingSystem::OnMouseButtonPressedEvent(bear::MouseButtonPressedEvent& e)
 	{
+		std::cout << "Mouse button pressed" << std::endl;
 
+		if (e.GetMouseButton() == bear::Mouse::ButtonLeft)
+		{
+			std::cout << "Left mouse button pressed" << std::endl;
+			raycast_ = true;
+			auto mouse_position = bear::Input::GetMousePosition();
+			clicked_position_ = { mouse_position.first, mouse_position.second };
+		}
 		return false;
 	}
 }
