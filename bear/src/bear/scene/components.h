@@ -25,7 +25,7 @@ namespace bear
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
 
-		const glm::vec3 Forward() const { return rotation_ * glm::vec3(0.0f, 0.0f, 1.0f); }
+		const glm::vec3 Forward() const { return rotation_ * glm::vec3(0.0f, 0.0f, -1.0f); }
 
 		const glm::vec3 Right() const { return rotation_ * glm::vec3(1.0f, 0.0f, 0.0f); }
 
@@ -62,7 +62,6 @@ namespace bear
 			new_mat = glm::translate(new_mat, position_);
 			new_mat = new_mat * glm::toMat4(rotation_);
 			new_mat = glm::scale(new_mat, scale_);
-
 			transform_ = new_mat;
 		}
 

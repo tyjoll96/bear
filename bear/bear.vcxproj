@@ -76,7 +76,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>brpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BR_DEBUG;GLM_FORCE_XYZW_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -175,7 +175,11 @@
     <ClInclude Include="src\platform\bgfx\bounds.h" />
     <ClInclude Include="src\platform\bgfx\fs_imgui_image.bin.h" />
     <ClInclude Include="src\platform\bgfx\fs_ocornut_imgui.bin.h" />
+    <ClInclude Include="src\platform\bgfx\icons_font_awesome.ttf.h" />
+    <ClInclude Include="src\platform\bgfx\icons_kenney.ttf.h" />
     <ClInclude Include="src\platform\bgfx\imgui_impl_bgfx.h" />
+    <ClInclude Include="src\platform\bgfx\roboto_regular.ttf.h" />
+    <ClInclude Include="src\platform\bgfx\robotomono_regular.ttf.h" />
     <ClInclude Include="src\platform\bgfx\vs_imgui_image.bin.h" />
     <ClInclude Include="src\platform\bgfx\vs_ocornut_imgui.bin.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />

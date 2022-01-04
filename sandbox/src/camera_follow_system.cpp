@@ -1,6 +1,8 @@
 #include "brpch.h"
 #include "camera_follow_system.h"
 
+#include <imgui/imgui.h>
+
 namespace ralleon
 {
 	void CameraFollowSystem::OnUpdate(entt::registry& registry, float delta_time)
@@ -22,11 +24,17 @@ namespace ralleon
 
 		if (!follow_transform || !camera_transform) return;
 
-		glm::vec3 new_pos = { 0.0f, 4.0f, 0.0f }; // follow_transform->GetPosition() + follow_transform->Forward() * offset.z + follow_transform->Up() * offset.y;
-		camera_transform->SetPosition(new_pos);
-		/*glm::mat4 new_rot = glm::lookAt(new_pos, follow_transform->GetPosition(), { 0.0f, 1.0f, 0.0f });
-		camera_transform->SetRotation(glm::quat_cast(new_rot));*/
-		//camera_transform->SetPosition({ 0.0f, -3.0f, -5.0f });
-		//p_camera->View = eye;
+		glm::mat4 eye = glm::translate(follow_transform->GetTransform(), offset);
+		camera_transform->SetPosition(eye[3]);
+		new_pos_ = eye[3];
+		p_camera->View = glm::lookAt(glm::vec3(eye[3]), glm::vec3(follow_transform->GetTransform()[3]), { 0.0f, 1.0f, 0.0f });
+	}
+	void CameraFollowSystem::OnImGuiUpdate()
+	{
+		ImGui::Begin("Camera follow system");
+		ImGui::Text("%.3f", new_pos_.x);
+		ImGui::Text("%.3f", new_pos_.y);
+		ImGui::Text("%.3f", new_pos_.z);
+		ImGui::End();
 	}
 }

@@ -13,6 +13,9 @@
     <Filter Include="src\bear\events">
       <UniqueIdentifier>{FAFD7E17-6689-ECDB-6F9A-6FD0DBA448DC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\bear\imgui">
+      <UniqueIdentifier>{A064852F-8C32-7935-75C6-E95B6133559A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\bear\physics">
       <UniqueIdentifier>{4898E336-3491-0289-5DC3-E70D491BE294}</UniqueIdentifier>
     </Filter>
@@ -96,6 +99,9 @@
     <ClInclude Include="src\bear\events\mouse_event.h">
       <Filter>src\bear\events</Filter>
     </ClInclude>
+    <ClInclude Include="src\bear\imgui\imgui_system.h">
+      <Filter>src\bear\imgui</Filter>
+    </ClInclude>
     <ClInclude Include="src\bear\physics\physics.h">
       <Filter>src\bear\physics</Filter>
     </ClInclude>
@@ -156,10 +162,28 @@
     <ClInclude Include="src\platform\bgfx\bounds.h">
       <Filter>src\platform\bgfx</Filter>
     </ClInclude>
+    <ClInclude Include="src\platform\bgfx\fs_imgui_image.bin.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
     <ClInclude Include="src\platform\bgfx\fs_ocornut_imgui.bin.h">
       <Filter>src\platform\bgfx</Filter>
     </ClInclude>
+    <ClInclude Include="src\platform\bgfx\icons_font_awesome.ttf.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\bgfx\icons_kenney.ttf.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
     <ClInclude Include="src\platform\bgfx\imgui_impl_bgfx.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\bgfx\roboto_regular.ttf.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\bgfx\robotomono_regular.ttf.h">
+      <Filter>src\platform\bgfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\bgfx\vs_imgui_image.bin.h">
       <Filter>src\platform\bgfx</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\bgfx\vs_ocornut_imgui.bin.h">
@@ -1389,9 +1413,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\platform\bgfx\fs_imgui_image.bin.h" />
-    <ClInclude Include="src\platform\bgfx\vs_imgui_image.bin.h" />
-    <ClInclude Include="src\bear\imgui\imgui_system.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\bear\core\application.cpp">
@@ -1402,6 +1423,9 @@
     </ClCompile>
     <ClCompile Include="src\bear\core\window.cpp">
       <Filter>src\bear\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bear\imgui\imgui_system.cpp">
+      <Filter>src\bear\imgui</Filter>
     </ClCompile>
     <ClCompile Include="src\bear\physics\physics_system.cpp">
       <Filter>src\bear\physics</Filter>
@@ -1442,6 +1466,5 @@
     <ClCompile Include="src\platform\bgfx\imgui_impl_bgfx.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
-    <ClCompile Include="src\bear\imgui\imgui_system.cpp" />
   </ItemGroup>
 </Project>

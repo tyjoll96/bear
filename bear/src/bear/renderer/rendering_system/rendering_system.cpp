@@ -36,7 +36,7 @@ namespace bear
 		{
 			const auto& p_camera = registry.get<PerspectiveCameraComponent>(entity);
 			const auto& transform = registry.get<TransformComponent>(entity);
-			view = transform.GetTransform();
+			view = p_camera.View;
 			proj = p_camera.Projection;
 		}
 
