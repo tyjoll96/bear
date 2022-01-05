@@ -101,4 +101,30 @@ namespace bear
 			bgfx::submit(2, program_);
 		}
 	}
+
+	void RenderingUISystem::OnEvent(Event& e)
+	{
+		bear::EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<bear::WindowResizeEvent>(BR_BIND_EVENT_FN(RenderingUISystem::OnWindowResizeEvent));
+	}
+
+	bool RenderingUISystem::OnWindowResizeEvent(bear::WindowResizeEvent& e)
+	{
+		canvas_size_.x = e.GetWidth();
+		canvas_size_.y = e.GetHeight();
+		bgfx::setViewRect(2, 0, 0, canvas_size_.x, canvas_size_.y);
+		bgfx::reset(canvas_size_.x, canvas_size_.y);
+		bx::mtxOrtho(
+			(float*)&camera_proj_,
+			-(canvas_size_.x / 2),
+			canvas_size_.x / 2,
+			-(canvas_size_.y / 2),
+			canvas_size_.y / 2,
+			-(canvas_size_.x / 2),
+			canvas_size_.x / 2,
+			0.0f,
+			bgfx::getCaps()->homogeneousDepth);
+
+		return false;
+	}
 }

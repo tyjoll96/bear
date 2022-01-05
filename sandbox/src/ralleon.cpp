@@ -55,7 +55,7 @@ public:
 			image.AddComponent<bear::ImageComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		}*/
 
-		bear::EntityHandle castbar = world_->CreateEntity("Option 1");
+		bear::EntityHandle castbar = world_->CreateEntity("Castbar");
 		{
 			bear::RectTransformComponent rtc;
 			rtc.SetPosition({ 0.0f, -240.0f, -10.0f });

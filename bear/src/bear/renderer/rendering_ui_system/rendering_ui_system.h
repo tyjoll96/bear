@@ -3,6 +3,7 @@
 #include <bgfx/bgfx.h>
 #include <glm/glm.hpp>
 
+#include "bear/events/application_event.h"
 #include "bear/scene/system.h"
 
 namespace bear
@@ -14,7 +15,9 @@ namespace bear
 		virtual ~RenderingUISystem() {}
 
 		virtual void OnUpdate(entt::registry& registry, float delta_time) override;
-		// OnEvent change camera size to screen size.
+		virtual void OnEvent(Event& e) override;
+
+		bool OnWindowResizeEvent(bear::WindowResizeEvent& e);
 	private:
 		bgfx::ProgramHandle program_;
 
