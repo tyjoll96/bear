@@ -2,6 +2,7 @@
 
 #include <bgfx/bgfx.h>
 
+#include "bear/events/application_event.h"
 #include "bear/scene/system.h"
 #include "sprite_component.h"
 
@@ -14,6 +15,9 @@ namespace bear
 		virtual ~Rendering2DSystem() {}
 
 		virtual void OnUpdate(entt::registry& registry, float delta_time) override;
+		virtual void OnEvent(Event& e) override;
+
+		bool OnWindowResizeEvent(bear::WindowResizeEvent& e);
 	private:
 		bgfx::ProgramHandle program_;
 

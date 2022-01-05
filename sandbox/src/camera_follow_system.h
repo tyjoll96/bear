@@ -26,7 +26,6 @@ namespace ralleon
 		virtual ~CameraFollowSystem() {}
 
 		virtual void OnUpdate(entt::registry& registry, float delta_time) override;
-		virtual void OnImGuiUpdate() override;
 	private:
 		glm::vec3 new_pos_ = glm::vec3(0.0f);
 	};

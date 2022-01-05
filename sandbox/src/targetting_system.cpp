@@ -105,11 +105,8 @@ namespace ralleon
 
 	bool TargettingSystem::OnMouseButtonPressedEvent(bear::MouseButtonPressedEvent& e)
 	{
-		std::cout << "Mouse button pressed" << std::endl;
-
 		if (e.GetMouseButton() == bear::Mouse::ButtonLeft)
 		{
-			std::cout << "Left mouse button pressed" << std::endl;
 			raycast_ = true;
 			auto mouse_position = bear::Input::GetMousePosition();
 			clicked_position_ = { mouse_position.first, mouse_position.second };

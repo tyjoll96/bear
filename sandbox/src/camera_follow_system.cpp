@@ -26,15 +26,6 @@ namespace ralleon
 
 		glm::mat4 eye = glm::translate(follow_transform->GetTransform(), offset);
 		camera_transform->SetPosition(eye[3]);
-		new_pos_ = eye[3];
-		p_camera->View = glm::lookAt(glm::vec3(eye[3]), glm::vec3(follow_transform->GetTransform()[3]), { 0.0f, 1.0f, 0.0f });
-	}
-	void CameraFollowSystem::OnImGuiUpdate()
-	{
-		ImGui::Begin("Camera follow system");
-		ImGui::Text("%.3f", new_pos_.x);
-		ImGui::Text("%.3f", new_pos_.y);
-		ImGui::Text("%.3f", new_pos_.z);
-		ImGui::End();
+		camera_transform->LookAt(follow_transform->GetPosition(), { 0.0f, 1.0f, 0.0f });
 	}
 }

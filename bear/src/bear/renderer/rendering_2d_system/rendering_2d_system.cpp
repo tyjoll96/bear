@@ -77,4 +77,22 @@ namespace bear
 			bgfx::submit(1, program_);
 		}
 	}
+
+	void Rendering2DSystem::OnEvent(Event& e)
+	{
+		bear::EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<bear::WindowResizeEvent>(BR_BIND_EVENT_FN(Rendering2DSystem::OnWindowResizeEvent));
+	}
+
+	bool Rendering2DSystem::OnWindowResizeEvent(bear::WindowResizeEvent& e)
+	{
+		unsigned int width = e.GetWidth();
+		unsigned int height = e.GetHeight();
+		bgfx::setViewRect(1, 0, 0, width, height);
+		bgfx::reset(width, height);
+		float ortho_width = (float)width / (float)height * 4.5f;
+		bx::mtxOrtho((float*)&camera_proj_, -1.0f * ortho_width, ortho_width, -4.5f, 4.5f, -1.0f, 1.0f, 0.0f, bgfx::getCaps()->homogeneousDepth);
+
+		return false;
+	}
 }

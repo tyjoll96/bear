@@ -4,6 +4,7 @@
 #include <bx/math.h>
 #include <errno.h>
 #include <glm/gtc/type_ptr.hpp>
+#include <imgui.h>
 
 #include "bear/scene/components.h"
 #include "platform/bgfx/bgfx_utils.h"
@@ -34,10 +35,12 @@ namespace bear
 		auto camera_registry_view = registry.view<PerspectiveCameraComponent, TransformComponent>();
 		for (auto entity : camera_registry_view)
 		{
-			const auto& p_camera = registry.get<PerspectiveCameraComponent>(entity);
+			auto* p_camera = &registry.get<PerspectiveCameraComponent>(entity);
 			const auto& transform = registry.get<TransformComponent>(entity);
-			view = p_camera.View;
-			proj = p_camera.Projection;
+			p_camera->View = glm::lookAt(transform.GetPosition(), transform.GetPosition() + transform.Forward(), { 0.0f, 1.0f, 0.0f });
+			view = p_camera->View;
+			p_camera->SetViewportDimensions(width_, height_);
+			proj = p_camera->Projection;
 		}
 
 		bgfx::setViewTransform(0, &view, &proj);
@@ -82,6 +85,29 @@ namespace bear
 
 			bgfx::submit(0, program_);
 		}
+	}
+
+	void RenderingSystem::OnImGuiUpdate()
+	{
+		ImGui::Begin("Rendering system debug");
+		ImGui::Text("%d : %d", width_, height_);
+		ImGui::End();
+	}
+
+	void RenderingSystem::OnEvent(Event& e)
+	{
+		bear::EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<bear::WindowResizeEvent>(BR_BIND_EVENT_FN(RenderingSystem::OnWindowResizeEvent));
+	}
+
+	bool RenderingSystem::OnWindowResizeEvent(bear::WindowResizeEvent& e)
+	{
+		width_ = e.GetWidth();
+		height_ = e.GetHeight();
+
+		bgfx::setViewRect(0, 0, 0, width_, height_);
+		bgfx::reset(width_, height_);
+		return false;
 	}
 
 }

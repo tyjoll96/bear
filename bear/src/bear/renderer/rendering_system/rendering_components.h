@@ -4,6 +4,7 @@
 #include "bear/renderer/mesh.h"
 
 #include <reactphysics3d/reactphysics3d.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "bear/core/application.h"
 #include "bear/core/input.h"
@@ -77,16 +78,17 @@ namespace bear
 
 	struct PerspectiveCameraComponent
 	{
-		glm::mat4 Projection;
+		glm::mat4 Projection = glm::mat4(1.0f);
 		glm::mat4 View = glm::mat4(1.0f);
 
 		PerspectiveCameraComponent() = default;
 		PerspectiveCameraComponent(const PerspectiveCameraComponent&) = default;
-		PerspectiveCameraComponent(glm::mat4 projection)
-			: Projection(projection)
+		PerspectiveCameraComponent(float fov, float near, float far)
+			: fov_(glm::radians(fov)), near_(near), far_(far)
 		{
+			CalculateProjection();
 		}
-
+		
 		rp3d::Ray ScreenPointToRay(glm::vec3 start)
 		{
 			glm::vec3 start_point = start;
@@ -120,6 +122,35 @@ namespace bear
 				{ end_point.x, end_point.y, end_point.z }
 			};
 		}
+
+		const float GetFov() const { return fov_; }
+		void SetFov(const float fov) { fov_ = fov; CalculateProjection(); }
+
+		const float GetNear() const { return near_; }
+		void SetNear(const float near) { near_ = near; CalculateProjection(); }
+
+		const float GetFar() const { return far_; }
+		void SetFar(const float far) { far_ = far; CalculateProjection(); }
+
+		const unsigned int GetWidth() const { return width_; }
+		void SetWidth(const unsigned int width) { width_ = width; CalculateProjection(); }
+
+		const unsigned int GetHeight() const { return height_; }
+		void SetHeight(const unsigned int height) { height_ = height; CalculateProjection(); }
+
+		void SetViewportDimensions(const unsigned int width, const unsigned int height) { width_ = width; height_ = height; CalculateProjection(); }
+	private:
+		void CalculateProjection()
+		{
+			Projection = glm::perspective(fov_, (float)width_ / (float)height_, near_, far_);
+		}
+
+		float fov_ = glm::radians(45.0f);
+		float near_ = 0.1f;
+		float far_ = 100.0f;
+
+		unsigned int width_ = 1280;
+		unsigned int height_ = 720;
 	};
 
 	struct MeshTestComponent
