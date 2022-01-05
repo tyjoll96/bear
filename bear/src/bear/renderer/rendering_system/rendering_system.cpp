@@ -106,6 +106,7 @@ namespace bear
 		height_ = e.GetHeight();
 
 		bgfx::setViewRect(0, 0, 0, width_, height_);
+		bgfx::reset(width_, height_);
 		return false;
 	}
 
