@@ -34,13 +34,7 @@ namespace bear
 		void LookAt(const glm::vec3& center, const glm::vec3& up)
 		{
 			glm::vec3 direction = glm::normalize(center - position_);
-			float dot = glm::dot({ 0.0f, 0.0f, -1.0f }, direction);
-
-			float angle = glm::degrees(acosf(dot));
-
-			glm::vec3 cross = glm::cross({ 0.0f, 0.0f, 1.0f }, direction);
-			glm::quat q = glm::angleAxis(angle, cross);
-			//glm::quat q = glm::quatLookAt(direction, up);
+			glm::quat q = glm::quatLookAt(direction, up);
 			rotation_ = q;
 			CalculateMatrix();
 		}

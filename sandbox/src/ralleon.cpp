@@ -76,10 +76,7 @@ public:
 			bear::TransformComponent tc;
 			camera.AddComponent<bear::TransformComponent>(tc);
 
-			glm::mat4 proj = glm::perspective(glm::radians(45.0f), float(1280) / float(720), 0.1f, 100.0f);
-			float projB[16];
-			bx::mtxProj(projB, 45.0f, float(1280) / float(720), 0.1f, 100.0f, bgfx::getCaps()->homogeneousDepth);
-			camera.AddComponent<bear::PerspectiveCameraComponent>(proj);
+			camera.AddComponent<bear::PerspectiveCameraComponent>(45.0f, 0.1f, 100.0f);
 		}
 
 		{
