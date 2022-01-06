@@ -5,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "bear/core/core.h"
 #include "bear/scene/components.h"
 #include "platform/bgfx/bgfx_utils.h"
 #include "rendering_ui_components.h"
@@ -31,8 +32,8 @@ namespace bear
 
 	RenderingUISystem::RenderingUISystem(const std::string& name)
 	{
-		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("assets/shaders/dx11/vs_image.bin");
-		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("assets/shaders/dx11/fs_image.bin");
+		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/shaders/dx11/vs_image.bin");
+		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/shaders/dx11/fs_image.bin");
 		program_ = bgfx::createProgram(vsh, fsh, true);
 
 		camera_view_ = glm::mat4(1.0f);
@@ -52,7 +53,7 @@ namespace bear
 		bgfx::setViewClear(2, BGFX_CLEAR_DEPTH);
 		bgfx::setViewName(2, "UI Renderer");
 
-		default_image_texture_ = BgfxUtils::LoadTexture("assets/textures/white.ktx");
+		default_image_texture_ = BgfxUtils::LoadTexture("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/textures/white.ktx");
 
 		u_image_tex_ = bgfx::createUniform("s_imageTex", bgfx::UniformType::Sampler);
 		u_color = bgfx::createUniform("u_color", bgfx::UniformType::Vec4);

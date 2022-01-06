@@ -31,8 +31,8 @@ namespace bear
 
 	Rendering2DSystem::Rendering2DSystem(const std::string& name)
 	{
-		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("assets/shaders/dx11/vs_quad.bin");
-		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("assets/shaders/dx11/fs_quad.bin");
+		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/shaders/dx11/vs_quad.bin");
+		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/shaders/dx11/fs_quad.bin");
 		program_ = bgfx::createProgram(vsh, fsh, true);
 
 		camera_view_ = glm::mat4(1.0f);

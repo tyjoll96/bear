@@ -16,8 +16,8 @@ namespace bear
 	RenderingSystem::RenderingSystem(const std::string& name)
 		: System(name)
 	{
-		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("assets/shaders/dx11/vs_default.bin");
-		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("assets/shaders/dx11/fs_default.bin");
+		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/shaders/dx11/vs_default.bin");
+		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/shaders/dx11/fs_default.bin");
 		bgfx::setDebug(BGFX_DEBUG_STATS);
 		program_ = bgfx::createProgram(vsh, fsh, true);
 
