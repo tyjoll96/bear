@@ -2,7 +2,10 @@
 
 #include "bear/scene/system.h"
 
+#include "bear/core/mouse_button_codes.h"
 #include "bear/events/application_event.h"
+#include "bear/events/key_event.h"
+#include "bear/events/mouse_event.h"
 
 namespace bear
 {
@@ -20,5 +23,8 @@ namespace bear
 		void End();
 
 		bool OnWindowResizeEvent(bear::WindowResizeEvent& e);
+		bool OnMouseButtonPressedEvent(bear::MouseButtonPressedEvent& e);
+		bool OnMouseButtonReleasedEvent(bear::MouseButtonReleasedEvent& e);
+		bool OnKeyPressedEvent(bear::KeyPressedEvent& e);
 	};
 }

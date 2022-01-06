@@ -76,12 +76,12 @@ public:
         view_id_ = view_id;
 
         ImGuiIO& io = ImGui::GetIO();
-        if (input_char >= 0)
+        /*if (input_char >= 0)
         {
             io.AddInputCharacter(input_char);
-        }
+        }*/
 
-        io.DisplaySize = ImVec2((float)width, (float)height);
+        // io.DisplaySize = ImVec2((float)width, (float)height);
 
         const int64_t now = bx::getHPCounter();
         const int64_t frameTime = now - last_;
@@ -90,9 +90,9 @@ public:
         io.DeltaTime = float(frameTime / freq);
 
         io.MousePos = ImVec2((float)mx, (float)my);
-        io.MouseDown[0] = 0 != (button & IMGUI_MBUT_LEFT);
+        /*io.MouseDown[0] = 0 != (button & IMGUI_MBUT_LEFT);
         io.MouseDown[1] = 0 != (button & IMGUI_MBUT_RIGHT);
-        io.MouseDown[2] = 0 != (button & IMGUI_MBUT_MIDDLE);
+        io.MouseDown[2] = 0 != (button & IMGUI_MBUT_MIDDLE);*/
         io.MouseWheel = (float)(scroll - last_scroll_);
         last_scroll_ = scroll;
 
@@ -132,9 +132,12 @@ public:
 
         ImGuiIO& io = ImGui::GetIO();
 
+        //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
         io.DisplaySize = ImVec2(1280.0f, 720.0f);
         io.DeltaTime = 1.0f / 60.0f;
-        io.IniFilename = NULL;
+        //io.IniFilename = NULL;
 
         SetupStyle(true);
 
@@ -192,7 +195,7 @@ public:
                 bgfx::copy(data, width * height * 4)
             );
 
-            // ImGui::InitDockContext();
+            //ImGui::InitDockContext();
         }
     }
 

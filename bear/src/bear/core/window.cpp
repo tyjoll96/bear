@@ -144,7 +144,7 @@ namespace bear {
 		init.resolution.reset = BGFX_RESET_VSYNC | BGFX_RESET_MSAA_X4;
 		bgfx::init(init);
 
-		bgfx::setDebug(BGFX_DEBUG_STATS);
+		//bgfx::setDebug(BGFX_DEBUG_STATS);
 	}
 
 	void Window::Shutdown()

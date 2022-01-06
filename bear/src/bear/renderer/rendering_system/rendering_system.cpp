@@ -18,7 +18,7 @@ namespace bear
 	{
 		bgfx::ShaderHandle vsh = BgfxUtils::LoadShader("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/shaders/dx11/vs_default.bin");
 		bgfx::ShaderHandle fsh = BgfxUtils::LoadShader("C:/Users/Tyler/Documents/projects/cpp/bear/bear/assets/shaders/dx11/fs_default.bin");
-		bgfx::setDebug(BGFX_DEBUG_STATS);
+		//bgfx::setDebug(BGFX_DEBUG_STATS);
 		program_ = bgfx::createProgram(vsh, fsh, true);
 
 		bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x443355FF, 1.0f, 0);
