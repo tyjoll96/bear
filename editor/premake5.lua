@@ -24,7 +24,8 @@ project "editor"
 		"%{includedir.glm}",
 		"%{includedir.entt}",
 		"%{includedir.reactphysics3d}",
-		"%{includedir.imgui}"
+		"%{includedir.imgui}",
+		"%{includedir.spdlog}"
 	}
 
 	links

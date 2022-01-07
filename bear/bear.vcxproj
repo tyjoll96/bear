@@ -76,8 +76,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>brpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BR_DEBUG;GLM_FORCE_XYZW_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\spdlog\include;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>brpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\spdlog\include;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>brpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\json\single_include;vendor\bgfx\include;vendor\bx\include;vendor\bimg\include;vendor\GLFW\include;vendor\glm;vendor\entt\include;vendor\reactphysics3d\include;vendor\imgui;vendor\spdlog\include;vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -146,7 +146,9 @@
     <ClInclude Include="src\bear\core\entry_point.h" />
     <ClInclude Include="src\bear\core\input.h" />
     <ClInclude Include="src\bear\core\key_codes.h" />
+    <ClInclude Include="src\bear\core\log.h" />
     <ClInclude Include="src\bear\core\mouse_button_codes.h" />
+    <ClInclude Include="src\bear\core\platform_detection.h" />
     <ClInclude Include="src\bear\core\window.h" />
     <ClInclude Include="src\bear\events\application_event.h" />
     <ClInclude Include="src\bear\events\event.h" />
@@ -594,6 +596,7 @@
   <ItemGroup>
     <ClCompile Include="src\bear\core\application.cpp" />
     <ClCompile Include="src\bear\core\input.cpp" />
+    <ClCompile Include="src\bear\core\log.cpp" />
     <ClCompile Include="src\bear\core\window.cpp" />
     <ClCompile Include="src\bear\imgui\imgui_system.cpp" />
     <ClCompile Include="src\bear\physics\physics_system.cpp" />

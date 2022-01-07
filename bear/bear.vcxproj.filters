@@ -81,7 +81,13 @@
     <ClInclude Include="src\bear\core\key_codes.h">
       <Filter>src\bear\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\bear\core\log.h">
+      <Filter>src\bear\core</Filter>
+    </ClInclude>
     <ClInclude Include="src\bear\core\mouse_button_codes.h">
+      <Filter>src\bear\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bear\core\platform_detection.h">
       <Filter>src\bear\core</Filter>
     </ClInclude>
     <ClInclude Include="src\bear\core\window.h">
@@ -1466,5 +1472,6 @@
     <ClCompile Include="src\platform\bgfx\imgui_impl_bgfx.cpp">
       <Filter>src\platform\bgfx</Filter>
     </ClCompile>
+    <ClCompile Include="src\bear\core\log.cpp" />
   </ItemGroup>
 </Project>

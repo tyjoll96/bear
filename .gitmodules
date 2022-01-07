@@ -22,3 +22,6 @@
 [submodule "bear/vendor/imgui"]
 	path = bear/vendor/imgui
 	url = https://github.com/ocornut/imgui
+[submodule "bear/vendor/spdlog"]
+	path = bear/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git

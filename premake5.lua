@@ -18,6 +18,7 @@ includedir["glm"] = "%{wks.location}/bear/vendor/glm"
 includedir["entt"] = "%{wks.location}/bear/vendor/entt/include"
 includedir["reactphysics3d"] = "%{wks.location}/bear/vendor/reactphysics3d/include"
 includedir["imgui"] = "%{wks.location}/bear/vendor/imgui"
+includedir["spdlog"] = "%{wks.location}/bear/vendor/spdlog/include"
 
 includedir["bgfx"] = "%{wks.location}/bear/vendor/bgfx/include"
 includedir["bimg"] = "%{wks.location}/bear/vendor/bimg/include"

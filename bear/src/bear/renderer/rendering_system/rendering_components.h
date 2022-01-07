@@ -127,10 +127,10 @@ namespace bear
 		void SetFov(const float fov) { fov_ = fov; CalculateProjection(); }
 
 		const float GetNear() const { return near_; }
-		void SetNear(const float near) { near_ = near; CalculateProjection(); }
+		void SetNear(const float new_near) { near_ = new_near; CalculateProjection(); }
 
 		const float GetFar() const { return far_; }
-		void SetFar(const float far) { far_ = far; CalculateProjection(); }
+		void SetFar(const float new_far) { far_ = new_far; CalculateProjection(); }
 
 		const unsigned int GetWidth() const { return width_; }
 		void SetWidth(const unsigned int width) { width_ = width; CalculateProjection(); }

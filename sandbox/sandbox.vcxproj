@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\imgui;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\imgui;..\bear\vendor\spdlog\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -95,8 +95,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BR_RELEASE;GLM_FORCE_XYZW_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\imgui;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BR_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\imgui;..\bear\vendor\spdlog\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -117,7 +117,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BR_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\imgui;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\bear\src;..\bear\vendor;..\bear\vendor\bgfx\include;..\bear\vendor\bx\include;..\bear\vendor\bimg\include;..\bear\vendor\GLFW\include;..\bear\vendor\glm;..\bear\vendor\entt\include;..\bear\vendor\reactphysics3d\include;..\bear\vendor\imgui;..\bear\vendor\spdlog\include;..\bear\vendor\bx\include\compat\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
